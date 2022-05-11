@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Novel Reader</string>
+    <string name="search_hint">Type book name or author</string>
+    <string name="popular">Popular</string>
+    <string name="discover">Discover</string>
+    <string name="recommended">Recommended</string>
+    <string name="more">More</string>
+</resources>

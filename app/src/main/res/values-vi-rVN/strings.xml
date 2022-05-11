@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Novel Reader</string>
+    <string name="search_hint">"Nhập tên sách hoặc tác giả "</string>
+    <string name="popular">Phổ biến</string>
+    <string name="discover">Thông tin mới</string>
+    <string name="recommended">Truyện gợi ý</string>
+    <string name="more">Xem thêm</string>
+</resources>
