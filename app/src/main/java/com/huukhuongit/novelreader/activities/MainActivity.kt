@@ -10,7 +10,7 @@ import com.denzcoskun.imageslider.ImageSlider
 import com.denzcoskun.imageslider.constants.ScaleTypes
 import com.denzcoskun.imageslider.models.SlideModel
 import com.huukhuongit.novelreader.R
-import com.huukhuongit.novelreader.adapters.AdapterNovel
+import com.huukhuongit.novelreader.adapters.AdapterPortaitNovel
 import com.huukhuongit.novelreader.adapters.OnItemClickListener
 import com.huukhuongit.novelreader.models.NovelModel
 import me.everything.android.ui.overscroll.OverScrollDecoratorHelper
@@ -27,11 +27,11 @@ class MainActivity : AppCompatActivity(), OnItemClickListener {
 
     private lateinit var rcvPopular: RecyclerView
     private lateinit var listNovelPopular: ArrayList<NovelModel>
-    private lateinit var adapterNovelPopular: AdapterNovel
+    private lateinit var adapterNovelPopular: AdapterPortaitNovel
 
     private lateinit var rcvRecommended: RecyclerView
     private lateinit var listNovelRecommended: ArrayList<NovelModel>
-    private lateinit var adapterNovelRecommended: AdapterNovel
+    private lateinit var adapterNovelRecommended: AdapterPortaitNovel
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -85,7 +85,7 @@ class MainActivity : AppCompatActivity(), OnItemClickListener {
                     isDeleted = false
                 )
             )
-        adapterNovelPopular = AdapterNovel(listNovelPopular, this)
+        adapterNovelPopular = AdapterPortaitNovel(listNovelPopular, this)
         rcvPopular.adapter = adapterNovelPopular
 
         listNovelRecommended = ArrayList()
@@ -105,7 +105,7 @@ class MainActivity : AppCompatActivity(), OnItemClickListener {
                     isDeleted = false
                 )
             )
-        adapterNovelRecommended = AdapterNovel(listNovelRecommended, this)
+        adapterNovelRecommended = AdapterPortaitNovel(listNovelRecommended, this)
         rcvRecommended.adapter = adapterNovelRecommended
     }
 

@@ -161,7 +161,7 @@
                     android:orientation="horizontal"
                     android:paddingHorizontal="@dimen/_4sdp"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    tools:listitem="@layout/item_novel" />
+                    tools:listitem="@layout/item_novel_portait" />
 
             </LinearLayout>
 
@@ -224,7 +224,7 @@
                     android:orientation="horizontal"
                     android:paddingHorizontal="@dimen/_4sdp"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    tools:listitem="@layout/item_novel" />
+                    tools:listitem="@layout/item_novel_portait" />
 
             </LinearLayout>
 
