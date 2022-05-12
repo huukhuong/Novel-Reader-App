@@ -13,4 +13,8 @@
     <string name="categories">Thể loại</string>
     <string name="offline">Ngoại tuyến</string>
     <string name="top_novel">Top truyện</string>
+    <string name="no_novels_data">Chưa có dữ liệu</string>
+    <string name="you_can_be_download_to_save_offline_data">Bạn có thể tải xuống để lưu dữ liệu ngoại tuyến</string>
+    <string name="no_notification_found">Không có thông báo mới</string>
+    <string name="updating">Đang cập nhật</string>
 </resources>

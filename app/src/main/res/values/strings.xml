@@ -12,6 +12,8 @@
     <string name="settings">Settings</string>
     <string name="offline">Offline</string>
     <string name="top_novel">Top Novel</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="no_novels_data">No novels data</string>
+    <string name="you_can_be_download_to_save_offline_data">You can be download to save offline data</string>
+    <string name="no_notification_found">No notification found</string>
+    <string name="updating">Updating</string>
 </resources>

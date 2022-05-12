@@ -86,8 +86,6 @@ class HomeFragment : Fragment(), OnItemClickListener {
                     description = "description",
                     chapters = 16,
                     isDone = false,
-                    isPopular = true,
-                    isRecommended = true,
                     uploadedAt = Date(),
                     updatedAt = Date(),
                     isDeleted = false
@@ -109,8 +107,6 @@ class HomeFragment : Fragment(), OnItemClickListener {
                     description = "description",
                     chapters = 16,
                     isDone = false,
-                    isPopular = true,
-                    isRecommended = true,
                     uploadedAt = Date(),
                     updatedAt = Date(),
                     isDeleted = false
@@ -132,8 +128,6 @@ class HomeFragment : Fragment(), OnItemClickListener {
                     description = "“Tôi thấy hoa vàng trên cỏ xanh” đúng là một vé để bạn đọc được trở về tuổi thơ. Cùng lũ trẻ trong xóm, ngày ngày rủ nhau chơi các trò chơi mà chỉ có trẻ con thôn quê mới có được. Những câu chuyện nhỏ gần gũi, những tình cảm ấm áp mà những đứa trẻ dành cho nhau khi mới chỉ chớm biết cái thứ tình cảm khác với tình bạn bè.",
                     chapters = 16,
                     isDone = false,
-                    isPopular = true,
-                    isRecommended = true,
                     uploadedAt = Date(),
                     updatedAt = Date(),
                     isDeleted = false
@@ -155,8 +149,6 @@ class HomeFragment : Fragment(), OnItemClickListener {
                     description = "“Tôi thấy hoa vàng trên cỏ xanh” đúng là một vé để bạn đọc được trở về tuổi thơ. Cùng lũ trẻ trong xóm, ngày ngày rủ nhau chơi các trò chơi mà chỉ có trẻ con thôn quê mới có được. Những câu chuyện nhỏ gần gũi, những tình cảm ấm áp mà những đứa trẻ dành cho nhau khi mới chỉ chớm biết cái thứ tình cảm khác với tình bạn bè.",
                     chapters = 16,
                     isDone = false,
-                    isPopular = true,
-                    isRecommended = true,
                     uploadedAt = Date(),
                     updatedAt = Date(),
                     isDeleted = false

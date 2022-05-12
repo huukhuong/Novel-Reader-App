@@ -54,8 +54,6 @@ class OfflineFragment : Fragment(), OnItemClickListener {
                             "Nhưng sóng gió vẫn xảy ra, liệu họ có được hạnh phúc vẹn tròn?",
                     chapters = 16,
                     isDone = false,
-                    isPopular = true,
-                    isRecommended = true,
                     uploadedAt = Date(),
                     updatedAt = Date(),
                     isDeleted = false
@@ -64,6 +62,15 @@ class OfflineFragment : Fragment(), OnItemClickListener {
         adapterListOfflineNovel =
             AdapterPortaitNovel(R.layout.item_novel_portait_offline, listOfflineNovels, this)
         binding.rcvOfflineNovels.adapter = adapterListOfflineNovel
+
+        checkEmpty()
+    }
+
+    private fun checkEmpty() {
+        if (listOfflineNovels.size == 0) {
+            binding.layoutEmpty.visibility = View.VISIBLE
+            binding.rcvOfflineNovels.visibility = View.GONE
+        }
     }
 
     override fun onItemClick(position: Int, item: Any) {

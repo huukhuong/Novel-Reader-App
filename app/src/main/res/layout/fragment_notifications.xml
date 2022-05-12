@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/primary"
-    tools:context=".fragments.OfflineFragment">
+    tools:context=".fragments.NotificationsFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -20,20 +20,19 @@
             android:gravity="center"
             android:paddingVertical="@dimen/_8sdp"
             android:paddingStart="@dimen/padding_horizontal"
-            android:text="@string/offline"
+            android:text="@string/notification"
             android:textColor="@color/white"
             android:textSize="@dimen/_20sdp"
             android:translationZ="@dimen/_100sdp" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rcvOfflineNovels"
+            android:id="@+id/rcvNotification"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:paddingHorizontal="@dimen/_10sdp"
+            android:orientation="vertical"
             android:visibility="gone"
-            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-            app:spanCount="3"
-            tools:listitem="@layout/item_novel_portait_offline" />
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/item_notification_unseen" />
 
         <LinearLayout
             android:id="@+id/layoutEmpty"
@@ -46,25 +45,16 @@
             <ImageView
                 android:layout_width="@dimen/_100sdp"
                 android:layout_height="@dimen/_100sdp"
-                android:src="@drawable/nodata" />
+                android:src="@drawable/ic_twotone_notifications_active_24"
+                app:tint="@color/light0" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/no_novels_data"
+                android:text="@string/no_notification_found"
                 android:textColor="@color/light1"
                 android:textSize="@dimen/_18sdp" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_4sdp"
-                android:text="@string/you_can_be_download_to_save_offline_data"
-                android:textColor="@color/light0"
-                android:textSize="@dimen/_12sdp" />
-
         </LinearLayout>
-
     </LinearLayout>
-
 </FrameLayout>
