@@ -8,6 +8,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import com.huukhuongit.novelreader.R
 import com.huukhuongit.novelreader.databinding.ActivityMainBinding
+import com.huukhuongit.novelreader.fragments.CategoriesFragment
 import com.huukhuongit.novelreader.fragments.HomeFragment
 
 class MainActivity : AppCompatActivity() {
@@ -27,7 +28,7 @@ class MainActivity : AppCompatActivity() {
         binding.bottomNavigationView.setOnItemSelectedListener {
             when (it.itemId) {
                 R.id.item_bottom_home -> replaceFragment(HomeFragment())
-                R.id.item_bottom_categories -> Log.e("Item click", "Categories")
+                R.id.item_bottom_categories -> replaceFragment(CategoriesFragment())
                 R.id.item_bottom_offline -> Log.e("Item click", "Offline")
                 R.id.item_bottom_notifications -> Log.e("Item click", "Notifications")
                 R.id.item_bottom_settings -> Log.e("Item click", "Settings")
@@ -42,6 +43,13 @@ class MainActivity : AppCompatActivity() {
     private fun replaceFragment(fragment: Fragment) {
         val fragmentManager: FragmentManager = supportFragmentManager
         val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
+        fragmentTransaction.setCustomAnimations(
+            R.anim.fragment_slide_in,
+            R.anim.fragment_fade_out,
+            R.anim.fragment_fade_in,
+            R.anim.fragment_slide_out
+        )
+        fragmentTransaction.addToBackStack(null)
         fragmentTransaction.replace(R.id.frameLayout, fragment)
         fragmentTransaction.commit()
     }

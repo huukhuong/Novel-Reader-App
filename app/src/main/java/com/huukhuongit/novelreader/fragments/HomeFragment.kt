@@ -1,6 +1,5 @@
 package com.huukhuongit.novelreader.fragments
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,14 +9,13 @@ import androidx.fragment.app.Fragment
 import com.denzcoskun.imageslider.constants.ScaleTypes
 import com.denzcoskun.imageslider.models.SlideModel
 import com.huukhuongit.novelreader.R
-import com.huukhuongit.novelreader.activities.MainActivity
 import com.huukhuongit.novelreader.adapters.AdapterLandscapeNovel
 import com.huukhuongit.novelreader.adapters.AdapterPortaitNovel
 import com.huukhuongit.novelreader.adapters.OnItemClickListener
 import com.huukhuongit.novelreader.databinding.FragmentHomeBinding
 import com.huukhuongit.novelreader.models.NovelModel
 import me.everything.android.ui.overscroll.OverScrollDecoratorHelper
-import java.util.Date
+import java.util.*
 
 class HomeFragment : Fragment(), OnItemClickListener {
 
