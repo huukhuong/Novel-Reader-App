@@ -26,10 +26,12 @@ class AdapterLandscapeNovel(
         val imgNovelThumb = holder.imgNovelThumb
         val txtNovelTitle = holder.txtNovelTitle
         val txtNovelAuthor = holder.txtNovelAuthor
+        val txtNovelDescription = holder.txtNovelDescription
 
         Picasso.get().load(item.thumbnail).into(imgNovelThumb)
         txtNovelTitle.text = item.name
         txtNovelAuthor.text = item.author
+        txtNovelDescription.text = item.description
     }
 
     override fun getItemCount(): Int {
@@ -42,6 +44,7 @@ class AdapterLandscapeNovel(
         var imgNovelThumb: ImageView = itemView.findViewById(R.id.imgNovelThumb)
         var txtNovelTitle: TextView = itemView.findViewById(R.id.txtNovelTitle)
         var txtNovelAuthor: TextView = itemView.findViewById(R.id.txtNovelAuthor)
+        var txtNovelDescription: TextView = itemView.findViewById(R.id.txtNovelDescription)
 
         init {
             itemView.setOnClickListener(this)

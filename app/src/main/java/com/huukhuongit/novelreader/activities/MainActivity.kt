@@ -10,6 +10,7 @@ import com.denzcoskun.imageslider.ImageSlider
 import com.denzcoskun.imageslider.constants.ScaleTypes
 import com.denzcoskun.imageslider.models.SlideModel
 import com.huukhuongit.novelreader.R
+import com.huukhuongit.novelreader.adapters.AdapterLandscapeNovel
 import com.huukhuongit.novelreader.adapters.AdapterPortaitNovel
 import com.huukhuongit.novelreader.adapters.OnItemClickListener
 import com.huukhuongit.novelreader.models.NovelModel
@@ -25,14 +26,17 @@ class MainActivity : AppCompatActivity(), OnItemClickListener {
     private lateinit var carouselDiscover: ImageSlider
     private lateinit var listBannerCarousel: ArrayList<SlideModel>
 
-    private lateinit var rcvPopular: RecyclerView
+    private lateinit var rcvNovelPopular: RecyclerView
     private lateinit var listNovelPopular: ArrayList<NovelModel>
     private lateinit var adapterNovelPopular: AdapterPortaitNovel
 
-    private lateinit var rcvRecommended: RecyclerView
+    private lateinit var rcvNovelRecommended: RecyclerView
     private lateinit var listNovelRecommended: ArrayList<NovelModel>
     private lateinit var adapterNovelRecommended: AdapterPortaitNovel
 
+    private lateinit var rcvNovelRecent: RecyclerView
+    private lateinit var listNovelRecent: ArrayList<NovelModel>
+    private lateinit var adapterNovelRecent: AdapterLandscapeNovel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,17 +51,23 @@ class MainActivity : AppCompatActivity(), OnItemClickListener {
 
         txtSearchKeyword = findViewById(R.id.txtSearchKeyword)
         carouselDiscover = findViewById(R.id.carouselDiscover)
-        rcvPopular = findViewById(R.id.rcvPopular)
-        rcvRecommended = findViewById(R.id.rcvRecommended)
+        rcvNovelPopular = findViewById(R.id.rcvPopular)
+        rcvNovelRecommended = findViewById(R.id.rcvRecommended)
+        rcvNovelRecent = findViewById(R.id.rcvRecent)
 
         // scrollover recyclerview and parent scrollview
         OverScrollDecoratorHelper.setUpOverScroll(scrollView)
+        // recyclerview
         OverScrollDecoratorHelper.setUpOverScroll(
-            rcvPopular,
+            rcvNovelPopular,
             OverScrollDecoratorHelper.ORIENTATION_HORIZONTAL
         )
         OverScrollDecoratorHelper.setUpOverScroll(
-            rcvRecommended,
+            rcvNovelRecommended,
+            OverScrollDecoratorHelper.ORIENTATION_HORIZONTAL
+        )
+        OverScrollDecoratorHelper.setUpOverScroll(
+            rcvNovelRecent,
             OverScrollDecoratorHelper.ORIENTATION_HORIZONTAL
         )
 
@@ -68,14 +78,17 @@ class MainActivity : AppCompatActivity(), OnItemClickListener {
         listBannerCarousel.add(SlideModel("https://files.giaoducthoidai.vn/Uploaded/huyentt/2019-05-14/bo-ba-trinh-tham-DIMQ.jpg"))
         carouselDiscover.setImageList(listBannerCarousel, ScaleTypes.CENTER_CROP)
 
+        // setup for Popular
         listNovelPopular = ArrayList()
         for (i in 1..10)
             listNovelPopular.add(
                 NovelModel(
+                    id = i,
                     thumbnail = "https://307a0e78.vws.vegacdn.vn/view/v2/image/img.book/0/0/0/19167.jpg?v=1&w=340&h=497",
                     name = "Nơi giấc mơ em thuộc về",
                     author = "Nhóm 4.0",
                     description = "description",
+                    categoryId = 1,
                     chapters = 16,
                     isDone = false,
                     isPopular = true,
@@ -86,16 +99,19 @@ class MainActivity : AppCompatActivity(), OnItemClickListener {
                 )
             )
         adapterNovelPopular = AdapterPortaitNovel(listNovelPopular, this)
-        rcvPopular.adapter = adapterNovelPopular
+        rcvNovelPopular.adapter = adapterNovelPopular
 
+        // setup for Recommended
         listNovelRecommended = ArrayList()
         for (i in 1..10)
             listNovelRecommended.add(
                 NovelModel(
+                    id = i,
                     thumbnail = "https://307a0e78.vws.vegacdn.vn/view/v2/image/img.book/0/0/0/19167.jpg?v=1&w=340&h=497",
                     name = "Nơi giấc mơ em thuộc về",
                     author = "Nhóm 4.0",
                     description = "description",
+                    categoryId = 1,
                     chapters = 16,
                     isDone = false,
                     isPopular = true,
@@ -106,7 +122,30 @@ class MainActivity : AppCompatActivity(), OnItemClickListener {
                 )
             )
         adapterNovelRecommended = AdapterPortaitNovel(listNovelRecommended, this)
-        rcvRecommended.adapter = adapterNovelRecommended
+        rcvNovelRecommended.adapter = adapterNovelRecommended
+
+        // setup for Recent
+        listNovelRecent = ArrayList()
+        for (i in 1..10)
+            listNovelRecent.add(
+                NovelModel(
+                    id = i,
+                    thumbnail = "https://www.nxbtre.com.vn/Images/Book/nxbtre_full_04152018_031555.jpg",
+                    name = "Tôi thấy hoa vàng trên cỏ xanh",
+                    author = "Nhóm 4.0",
+                    description = "“Tôi thấy hoa vàng trên cỏ xanh” đúng là một vé để bạn đọc được trở về tuổi thơ. Cùng lũ trẻ trong xóm, ngày ngày rủ nhau chơi các trò chơi mà chỉ có trẻ con thôn quê mới có được. Những câu chuyện nhỏ gần gũi, những tình cảm ấm áp mà những đứa trẻ dành cho nhau khi mới chỉ chớm biết cái thứ tình cảm khác với tình bạn bè.",
+                    categoryId = 1,
+                    chapters = 16,
+                    isDone = false,
+                    isPopular = true,
+                    isRecommended = true,
+                    uploadedAt = Date(),
+                    updatedAt = Date(),
+                    isDeleted = false
+                )
+            )
+        adapterNovelRecent = AdapterLandscapeNovel(listNovelRecent, this)
+        rcvNovelRecent.adapter = adapterNovelRecent
     }
 
     private fun addEvents() {
@@ -115,7 +154,6 @@ class MainActivity : AppCompatActivity(), OnItemClickListener {
 
     override fun onItemClick(position: Int, item: Any) {
         val itemNovel: NovelModel = item as NovelModel
-        Toast.makeText(this, "Position click $position", Toast.LENGTH_SHORT).show()
         Toast.makeText(this, "Item click ${itemNovel.name}", Toast.LENGTH_SHORT).show()
     }
 

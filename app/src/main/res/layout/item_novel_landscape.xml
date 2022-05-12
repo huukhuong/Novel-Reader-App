@@ -1,19 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="@dimen/_120sdp"
-    android:layout_height="@dimen/_200sdp"
+    android:layout_width="@dimen/_260sdp"
+    android:layout_height="@dimen/_150sdp"
     android:background="?android:attr/selectableItemBackground"
     android:clickable="true"
     android:focusable="true"
-    android:orientation="vertical"
     android:paddingHorizontal="@dimen/_5sdp"
     android:paddingTop="@dimen/_5sdp">
 
     <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
+        android:id="@+id/cardThumb"
+        android:layout_width="@dimen/_110sdp"
+        android:layout_height="match_parent"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:layout_marginBottom="@dimen/_10sdp"
+        android:translationZ="@dimen/_100sdp"
         app:cardBackgroundColor="@color/primary"
         app:cardCornerRadius="@dimen/_6sdp">
 
@@ -26,29 +28,60 @@
 
     </androidx.cardview.widget.CardView>
 
-    <TextView
-        android:id="@+id/txtNovelTitle"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardBody"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_8sdp"
-        android:ellipsize="end"
-        android:maxLines="1"
-        android:paddingHorizontal="@dimen/_4sdp"
-        android:text="Tôi thấy hoa vàng trên cỏ xanh"
-        android:textColor="@color/white"
-        android:textSize="@dimen/_12sdp"
-        android:textStyle="bold" />
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:foreground="?android:attr/selectableItemBackground"
+        app:cardBackgroundColor="@color/light0"
+        app:cardCornerRadius="@dimen/_6sdp">
 
-    <TextView
-        android:id="@+id/txtNovelAuthor"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_4sdp"
-        android:layout_marginBottom="@dimen/_8sdp"
-        android:ellipsize="end"
-        android:maxLines="1"
-        android:paddingHorizontal="@dimen/_4sdp"
-        android:text="Nguyễn Nhật Ánh"
-        android:textColor="@color/light1" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/_125sdp"
+            android:orientation="vertical">
 
-</LinearLayout>
+            <TextView
+                android:id="@+id/txtNovelTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:paddingHorizontal="@dimen/_4sdp"
+                android:text="Tôi thấy hoa vàng trên cỏ xanh"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_14sdp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txtNovelAuthor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_4sdp"
+                android:layout_marginBottom="@dimen/_4sdp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:paddingHorizontal="@dimen/_4sdp"
+                android:text="Nguyễn Nhật Ánh"
+                android:textColor="@color/light1"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txtNovelDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_8sdp"
+                android:ellipsize="end"
+                android:maxLines="4"
+                android:paddingHorizontal="@dimen/_4sdp"
+                android:text="“Tôi thấy hoa vàng trên cỏ xanh” đúng là một vé để bạn đọc được trở về tuổi thơ. Cùng lũ trẻ trong xóm, ngày ngày rủ nhau chơi các trò chơi mà chỉ có trẻ con thôn quê mới có được. Những câu chuyện nhỏ gần gũi, những tình cảm ấm áp mà những đứa trẻ dành cho nhau khi mới chỉ chớm biết cái thứ tình cảm khác với tình bạn bè."
+                android:textColor="@color/light1" />
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>
