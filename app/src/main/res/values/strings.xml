@@ -6,4 +6,8 @@
     <string name="recommended">Recommended</string>
     <string name="more">More</string>
     <string name="recent">Recent</string>
+    <string name="home">Home</string>
+    <string name="categories">Categories</string>
+    <string name="notification">Notifications</string>
+    <string name="settings">Settings</string>
 </resources>

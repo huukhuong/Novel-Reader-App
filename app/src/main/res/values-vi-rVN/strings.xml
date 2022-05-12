@@ -7,4 +7,8 @@
     <string name="recommended">Truyện gợi ý</string>
     <string name="more">Xem thêm</string>
     <string name="recent">Đọc gần đây</string>
+    <string name="home">Trang chủ</string>
+    <string name="notification">Thông báo</string>
+    <string name="settings">Cài đặt</string>
+    <string name="categories">Danh mục</string>
 </resources>
