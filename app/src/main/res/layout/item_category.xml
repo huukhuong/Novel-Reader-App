@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/SelectableItemBackground"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="@dimen/_6sdp"
+    android:layout_marginVertical="@dimen/_5sdp"
+    android:layout_weight="1"
+    android:background="?android:attr/selectableItemBackground"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="?android:attr/selectableItemBackground"
+    app:cardBackgroundColor="@color/light1"
+    app:cardCornerRadius="@dimen/_6sdp">
+
+    <TextView
+        android:id="@+id/txtCategoryName"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:paddingVertical="@dimen/_8sdp"
+        android:text="Truyện mới"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_14sdp" />
+
+</androidx.cardview.widget.CardView>

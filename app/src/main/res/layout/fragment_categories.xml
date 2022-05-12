@@ -1,10 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/primary"
     tools:context=".fragments.CategoriesFragment">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/primary"
+            android:paddingVertical="@dimen/_8sdp"
+            android:paddingStart="@dimen/padding_horizontal"
+            android:text="@string/categories"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_20sdp"
+            android:translationZ="@dimen/_100sdp" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rcvCategories"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingHorizontal="@dimen/_10sdp"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:spanCount="2"
+            tools:listitem="@layout/item_category" />
+
+    </LinearLayout>
 
 </FrameLayout>

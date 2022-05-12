@@ -11,6 +11,7 @@
     <string name="notification">Notifications</string>
     <string name="settings">Settings</string>
     <string name="offline">Offline</string>
+    <string name="top_novel">Top Novel</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

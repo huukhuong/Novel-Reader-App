@@ -74,7 +74,7 @@
                         android:layout_weight="1"
                         android:paddingHorizontal="@dimen/padding_horizontal"
                         android:paddingVertical="@dimen/_8sdp"
-                        android:text="Top 5"
+                        android:text="@string/top_novel"
                         android:textColor="@color/white"
                         android:textSize="@dimen/_18sdp"
                         android:textStyle="bold" />

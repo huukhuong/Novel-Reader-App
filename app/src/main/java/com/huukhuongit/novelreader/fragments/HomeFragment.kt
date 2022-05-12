@@ -22,6 +22,20 @@ class HomeFragment : Fragment(), OnItemClickListener {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
 
+    private lateinit var listBannerCarousel: ArrayList<SlideModel>
+
+    private lateinit var listNovelPopular: ArrayList<NovelModel>
+    private lateinit var adapterNovelPopular: AdapterPortaitNovel
+
+    private lateinit var listNovelRecommended: ArrayList<NovelModel>
+    private lateinit var adapterNovelRecommended: AdapterPortaitNovel
+
+    private lateinit var listNovelRecent: ArrayList<NovelModel>
+    private lateinit var adapterNovelRecent: AdapterLandscapeNovel
+
+    private lateinit var listNovelTop10: ArrayList<NovelModel>
+    private lateinit var adapterNovelTop10: AdapterLandscapeNovel
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -37,20 +51,6 @@ class HomeFragment : Fragment(), OnItemClickListener {
         super.onDestroyView()
         _binding = null
     }
-
-    private lateinit var listBannerCarousel: ArrayList<SlideModel>
-
-    private lateinit var listNovelPopular: ArrayList<NovelModel>
-    private lateinit var adapterNovelPopular: AdapterPortaitNovel
-
-    private lateinit var listNovelRecommended: ArrayList<NovelModel>
-    private lateinit var adapterNovelRecommended: AdapterPortaitNovel
-
-    private lateinit var listNovelRecent: ArrayList<NovelModel>
-    private lateinit var adapterNovelRecent: AdapterLandscapeNovel
-
-    private lateinit var listNovelTop10: ArrayList<NovelModel>
-    private lateinit var adapterNovelTop10: AdapterLandscapeNovel
 
     private fun addControls() {
         // overscroll recyclerview

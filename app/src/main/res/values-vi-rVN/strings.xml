@@ -4,7 +4,7 @@
     <string name="search_hint">"Nhập tên sách hoặc tác giả "</string>
     <string name="popular">Phổ biến</string>
     <string name="discover">Thông tin mới</string>
-    <string name="recommended">Truyện gợi ý</string>
+    <string name="recommended">Gợi ý cho bạn</string>
     <string name="more">Xem thêm</string>
     <string name="recent">Đọc gần đây</string>
     <string name="home">Trang chủ</string>
@@ -12,4 +12,5 @@
     <string name="settings">Cài đặt</string>
     <string name="categories">Thể loại</string>
     <string name="offline">Ngoại tuyến</string>
+    <string name="top_novel">Top truyện</string>
 </resources>
