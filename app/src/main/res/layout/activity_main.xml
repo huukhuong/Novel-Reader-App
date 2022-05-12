@@ -8,6 +8,7 @@
     android:orientation="vertical"
     tools:context=".activities.MainActivity">
 
+    <!-- Search bar -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -54,8 +55,9 @@
         </LinearLayout>
 
     </LinearLayout>
+    <!-- End Search bar -->
 
-    <ScrollView
+    <androidx.core.widget.NestedScrollView
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -65,6 +67,7 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
+            <!-- Slider -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -101,7 +104,48 @@
                 </androidx.cardview.widget.CardView>
 
             </LinearLayout>
+            <!-- End Slider -->
 
+            <!-- Top 10 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingHorizontal="@dimen/padding_horizontal"
+                        android:paddingVertical="@dimen/_8sdp"
+                        android:text="Top 5"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_18sdp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rcvTop10"
+                    android:overScrollMode="never"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    tools:itemCount="5"
+                    android:paddingHorizontal="@dimen/_4sdp"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:listitem="@layout/item_novel_vertical" />
+
+            </LinearLayout>
+            <!-- End Top 10 -->
+
+            <!-- Popular -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -164,7 +208,9 @@
                     tools:listitem="@layout/item_novel_portait" />
 
             </LinearLayout>
+            <!-- End Popular -->
 
+            <!-- Recent -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -199,13 +245,16 @@
                     tools:listitem="@layout/item_novel_landscape" />
 
             </LinearLayout>
+            <!-- End Recent -->
 
+            <!-- Recommended -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
                 <LinearLayout
+                    android:layout_marginTop="@dimen/_4sdp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center_vertical"
@@ -262,10 +311,11 @@
                     tools:listitem="@layout/item_novel_portait" />
 
             </LinearLayout>
+            <!-- End Recommended -->
 
         </LinearLayout>
 
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
 
 
 </LinearLayout>

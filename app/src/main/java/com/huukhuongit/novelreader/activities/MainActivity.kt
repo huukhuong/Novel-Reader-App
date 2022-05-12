@@ -5,6 +5,7 @@ import android.widget.ScrollView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.widget.NestedScrollView
 import androidx.recyclerview.widget.RecyclerView
 import com.denzcoskun.imageslider.ImageSlider
 import com.denzcoskun.imageslider.constants.ScaleTypes
@@ -20,7 +21,7 @@ import kotlin.collections.ArrayList
 
 class MainActivity : AppCompatActivity(), OnItemClickListener {
 
-    private lateinit var scrollView: ScrollView
+    private lateinit var scrollView: NestedScrollView
     private lateinit var txtSearchKeyword: TextView
 
     private lateinit var carouselDiscover: ImageSlider
@@ -38,6 +39,10 @@ class MainActivity : AppCompatActivity(), OnItemClickListener {
     private lateinit var listNovelRecent: ArrayList<NovelModel>
     private lateinit var adapterNovelRecent: AdapterLandscapeNovel
 
+    private lateinit var rcvNovelTop10: RecyclerView
+    private lateinit var listNovelTop10: ArrayList<NovelModel>
+    private lateinit var adapterNovelTop10: AdapterLandscapeNovel
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -54,10 +59,9 @@ class MainActivity : AppCompatActivity(), OnItemClickListener {
         rcvNovelPopular = findViewById(R.id.rcvPopular)
         rcvNovelRecommended = findViewById(R.id.rcvRecommended)
         rcvNovelRecent = findViewById(R.id.rcvRecent)
+        rcvNovelTop10 = findViewById(R.id.rcvTop10)
 
-        // scrollover recyclerview and parent scrollview
-        OverScrollDecoratorHelper.setUpOverScroll(scrollView)
-        // recyclerview
+        // overscroll recyclerview
         OverScrollDecoratorHelper.setUpOverScroll(
             rcvNovelPopular,
             OverScrollDecoratorHelper.ORIENTATION_HORIZONTAL
@@ -132,7 +136,7 @@ class MainActivity : AppCompatActivity(), OnItemClickListener {
                     id = i,
                     thumbnail = "https://www.nxbtre.com.vn/Images/Book/nxbtre_full_04152018_031555.jpg",
                     name = "Tôi thấy hoa vàng trên cỏ xanh",
-                    author = "Nhóm 4.0",
+                    author = "Nguyễn Nhật Ánh",
                     description = "“Tôi thấy hoa vàng trên cỏ xanh” đúng là một vé để bạn đọc được trở về tuổi thơ. Cùng lũ trẻ trong xóm, ngày ngày rủ nhau chơi các trò chơi mà chỉ có trẻ con thôn quê mới có được. Những câu chuyện nhỏ gần gũi, những tình cảm ấm áp mà những đứa trẻ dành cho nhau khi mới chỉ chớm biết cái thứ tình cảm khác với tình bạn bè.",
                     categoryId = 1,
                     chapters = 16,
@@ -144,8 +148,34 @@ class MainActivity : AppCompatActivity(), OnItemClickListener {
                     isDeleted = false
                 )
             )
-        adapterNovelRecent = AdapterLandscapeNovel(listNovelRecent, this)
+        adapterNovelRecent =
+            AdapterLandscapeNovel(R.layout.item_novel_landscape, listNovelRecent, this)
         rcvNovelRecent.adapter = adapterNovelRecent
+
+        // setup for Top 10
+        listNovelTop10 = ArrayList()
+        for (i in 1..5)
+            listNovelTop10.add(
+                NovelModel(
+                    id = i,
+                    thumbnail = "https://www.nxbtre.com.vn/Images/Book/nxbtre_full_04152018_031555.jpg",
+                    name = "Tôi thấy hoa vàng trên cỏ xanh",
+                    author = "Nguyễn Nhật Ánh",
+                    description = "“Tôi thấy hoa vàng trên cỏ xanh” đúng là một vé để bạn đọc được trở về tuổi thơ. Cùng lũ trẻ trong xóm, ngày ngày rủ nhau chơi các trò chơi mà chỉ có trẻ con thôn quê mới có được. Những câu chuyện nhỏ gần gũi, những tình cảm ấm áp mà những đứa trẻ dành cho nhau khi mới chỉ chớm biết cái thứ tình cảm khác với tình bạn bè.",
+                    categoryId = 1,
+                    chapters = 16,
+                    isDone = false,
+                    isPopular = true,
+                    isRecommended = true,
+                    uploadedAt = Date(),
+                    updatedAt = Date(),
+                    isDeleted = false
+                )
+            )
+        adapterNovelTop10 =
+            AdapterLandscapeNovel(R.layout.item_novel_vertical, listNovelTop10, this)
+        rcvNovelTop10.adapter = adapterNovelTop10
+        rcvNovelTop10.isNestedScrollingEnabled = false
     }
 
     private fun addEvents() {

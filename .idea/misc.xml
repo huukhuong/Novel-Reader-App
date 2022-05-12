@@ -4,10 +4,11 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="../../../../../layout/custom_preview.xml" value="0.384375" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.2736" />
         <entry key="app/src/main/res/layout/item_novel.xml" value="0.35625" />
         <entry key="app/src/main/res/layout/item_novel_landscape.xml" value="0.35625" />
         <entry key="app/src/main/res/layout/item_novel_portait.xml" value="0.35625" />
+        <entry key="app/src/main/res/layout/item_novel_vertical.xml" value="0.35625" />
       </map>
     </option>
   </component>

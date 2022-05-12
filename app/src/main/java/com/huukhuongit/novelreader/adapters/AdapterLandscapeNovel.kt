@@ -11,13 +11,15 @@ import com.huukhuongit.novelreader.models.NovelModel
 import com.squareup.picasso.Picasso
 
 class AdapterLandscapeNovel(
+    private var itemResource: Int,
     private var list: ArrayList<NovelModel>,
     private val listener: OnItemClickListener
 ) : RecyclerView.Adapter<AdapterLandscapeNovel.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
-            LayoutInflater.from(parent.context).inflate(R.layout.item_novel_landscape, parent, false)
+            LayoutInflater.from(parent.context)
+                .inflate(itemResource, parent, false)
         )
     }
 
