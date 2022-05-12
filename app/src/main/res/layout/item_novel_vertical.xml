@@ -5,6 +5,7 @@
     android:layout_height="@dimen/_120sdp"
     android:background="?android:attr/selectableItemBackground"
     android:clickable="true"
+    style="@style/SelectableItemBackground"
     android:focusable="true"
     android:paddingVertical="@dimen/_10sdp"
     android:orientation="horizontal"
