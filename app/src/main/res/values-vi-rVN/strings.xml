@@ -10,5 +10,6 @@
     <string name="home">Trang chủ</string>
     <string name="notification">Thông báo</string>
     <string name="settings">Cài đặt</string>
-    <string name="categories">Danh mục</string>
+    <string name="categories">Thể loại</string>
+    <string name="offline">Ngoại tuyến</string>
 </resources>

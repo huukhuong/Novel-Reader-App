@@ -63,9 +63,9 @@
 
     <FrameLayout
         android:id="@+id/frameLayout"
-        android:background="@color/primary"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:background="@color/primary"
         app:layout_constraintBottom_toTopOf="@id/bottomNavigationView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -28,6 +28,7 @@ class MainActivity : AppCompatActivity() {
             when (it.itemId) {
                 R.id.item_bottom_home -> replaceFragment(HomeFragment())
                 R.id.item_bottom_categories -> Log.e("Item click", "Categories")
+                R.id.item_bottom_offline -> Log.e("Item click", "Offline")
                 R.id.item_bottom_notifications -> Log.e("Item click", "Notifications")
                 R.id.item_bottom_settings -> Log.e("Item click", "Settings")
                 else -> {

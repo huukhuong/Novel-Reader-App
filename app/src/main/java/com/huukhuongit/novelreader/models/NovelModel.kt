@@ -9,7 +9,6 @@ class NovelModel {
     var name: String? = null
     var author: String? = null
     var description: String? = null
-    var categoryId: Int? = null
     var chapters: Int? = null
     var isDone: Boolean? = null
     var isPopular: Boolean? = null
@@ -25,7 +24,6 @@ class NovelModel {
         name: String,
         author: String,
         description: String,
-        categoryId: Int,
         chapters: Int,
         isDone: Boolean,
         isPopular: Boolean,
@@ -39,7 +37,6 @@ class NovelModel {
         this.name = name
         this.author = author
         this.description = description
-        this.categoryId = categoryId
         this.chapters = chapters
         this.isDone = isDone
         this.isPopular = isPopular

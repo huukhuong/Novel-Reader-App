@@ -8,8 +8,13 @@
 
     <item
         android:id="@+id/item_bottom_categories"
-        android:icon="@drawable/ic_outline_grid_on_24"
+        android:icon="@drawable/ic_outline_category_24"
         android:title="@string/categories" />
+
+    <item
+        android:id="@+id/item_bottom_offline"
+        android:icon="@drawable/ic_outline_menu_book_24"
+        android:title="@string/offline" />
 
     <item
         android:id="@+id/item_bottom_notifications"
