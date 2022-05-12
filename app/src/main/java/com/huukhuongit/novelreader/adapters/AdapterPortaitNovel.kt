@@ -11,13 +11,14 @@ import com.huukhuongit.novelreader.models.NovelModel
 import com.squareup.picasso.Picasso
 
 class AdapterPortaitNovel(
+    private var resourceLayout: Int,
     private var list: ArrayList<NovelModel>,
     private val listener: OnItemClickListener
 ) : RecyclerView.Adapter<AdapterPortaitNovel.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
-            LayoutInflater.from(parent.context).inflate(R.layout.item_novel_portait, parent, false)
+            LayoutInflater.from(parent.context).inflate(resourceLayout, parent, false)
         )
     }
 

@@ -93,7 +93,8 @@ class HomeFragment : Fragment(), OnItemClickListener {
                     isDeleted = false
                 )
             )
-        adapterNovelPopular = AdapterPortaitNovel(listNovelPopular, this)
+        adapterNovelPopular =
+            AdapterPortaitNovel(R.layout.item_novel_portait, listNovelPopular, this)
         binding.rcvPopular.adapter = adapterNovelPopular
 
         // setup for Recommended
@@ -115,7 +116,8 @@ class HomeFragment : Fragment(), OnItemClickListener {
                     isDeleted = false
                 )
             )
-        adapterNovelRecommended = AdapterPortaitNovel(listNovelRecommended, this)
+        adapterNovelRecommended =
+            AdapterPortaitNovel(R.layout.item_novel_portait, listNovelRecommended, this)
         binding.rcvRecommended.adapter = adapterNovelRecommended
 
         // setup for Recent

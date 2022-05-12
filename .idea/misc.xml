@@ -13,7 +13,9 @@
         <entry key="app/src/main/res/layout/item_category.xml" value="0.35625" />
         <entry key="app/src/main/res/layout/item_novel.xml" value="0.35625" />
         <entry key="app/src/main/res/layout/item_novel_landscape.xml" value="0.35625" />
+        <entry key="app/src/main/res/layout/item_novel_landscape_full_width.xml" value="0.35625" />
         <entry key="app/src/main/res/layout/item_novel_portait.xml" value="0.35625" />
+        <entry key="app/src/main/res/layout/item_novel_portait_offline.xml" value="0.35625" />
         <entry key="app/src/main/res/layout/item_novel_vertical.xml" value="0.35625" />
         <entry key="app/src/main/res/menu/mnu_bottom_nav.xml" value="0.35625" />
       </map>

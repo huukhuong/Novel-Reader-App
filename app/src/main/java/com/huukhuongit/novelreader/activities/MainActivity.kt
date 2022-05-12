@@ -10,6 +10,7 @@ import com.huukhuongit.novelreader.R
 import com.huukhuongit.novelreader.databinding.ActivityMainBinding
 import com.huukhuongit.novelreader.fragments.CategoriesFragment
 import com.huukhuongit.novelreader.fragments.HomeFragment
+import com.huukhuongit.novelreader.fragments.OfflineFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -29,7 +30,7 @@ class MainActivity : AppCompatActivity() {
             when (it.itemId) {
                 R.id.item_bottom_home -> replaceFragment(HomeFragment())
                 R.id.item_bottom_categories -> replaceFragment(CategoriesFragment())
-                R.id.item_bottom_offline -> Log.e("Item click", "Offline")
+                R.id.item_bottom_offline -> replaceFragment(OfflineFragment())
                 R.id.item_bottom_notifications -> Log.e("Item click", "Notifications")
                 R.id.item_bottom_settings -> Log.e("Item click", "Settings")
                 else -> {
