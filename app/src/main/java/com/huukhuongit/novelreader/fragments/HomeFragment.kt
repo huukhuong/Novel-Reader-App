@@ -1,6 +1,7 @@
 package com.huukhuongit.novelreader.fragments
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,11 +14,22 @@ import com.huukhuongit.novelreader.adapters.AdapterLandscapeNovel
 import com.huukhuongit.novelreader.adapters.AdapterPortaitNovel
 import com.huukhuongit.novelreader.adapters.OnItemClickListener
 import com.huukhuongit.novelreader.databinding.FragmentHomeBinding
+import com.huukhuongit.novelreader.models.BannerModel
 import com.huukhuongit.novelreader.models.NovelModel
+import com.huukhuongit.novelreader.network.APIService
+import com.huukhuongit.novelreader.utils.Constants
+import com.huukhuongit.novelreader.utils.Helpers
 import me.everything.android.ui.overscroll.OverScrollDecoratorHelper
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.util.*
+import kotlin.collections.ArrayList
+
 
 class HomeFragment : Fragment(), OnItemClickListener {
+
+    private val retrofit = Constants.retrofit.create(APIService::class.java)
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
@@ -53,28 +65,88 @@ class HomeFragment : Fragment(), OnItemClickListener {
     }
 
     private fun addControls() {
-        // overscroll recyclerview
-        OverScrollDecoratorHelper.setUpOverScroll(
+        Helpers.overScroll(
             binding.rcvPopular,
             OverScrollDecoratorHelper.ORIENTATION_HORIZONTAL
         )
-        OverScrollDecoratorHelper.setUpOverScroll(
+        Helpers.overScroll(
             binding.rcvRecent,
             OverScrollDecoratorHelper.ORIENTATION_HORIZONTAL
         )
-        OverScrollDecoratorHelper.setUpOverScroll(
+        Helpers.overScroll(
             binding.rcvRecommended,
             OverScrollDecoratorHelper.ORIENTATION_HORIZONTAL
         )
 
-        // setup carousel list
-        listBannerCarousel = ArrayList()
-        listBannerCarousel.add(SlideModel("https://suckhoedoisong.qltns.mediacdn.vn/Images/phamquynh/2020/05/12/banner_sach_ki_niem_130_nam_ngay_sinh_Chu_tich_Ho_Chi_Minh.jpg"))
-        listBannerCarousel.add(SlideModel("https://afamilycdn.com/150157425591193600/2020/3/26/base64-1585158970659821701827.png"))
-        listBannerCarousel.add(SlideModel("https://files.giaoducthoidai.vn/Uploaded/huyentt/2019-05-14/bo-ba-trinh-tham-DIMQ.jpg"))
-        binding.carouselDiscover.setImageList(listBannerCarousel, ScaleTypes.CENTER_CROP)
+        getListBanners()
+        getTop10Novels()
+        getListPopular()
+        getListRecent()
+        getListRecommended()
+    }
 
-        // setup for Popular
+    private fun getListBanners() {
+        retrofit.getListBanners()
+            .enqueue(object : Callback<ArrayList<BannerModel>?> {
+                override
+                fun onResponse(
+                    call: Call<ArrayList<BannerModel>?>,
+                    response: Response<ArrayList<BannerModel>?>
+                ) {
+                    val body = response.body()
+                    if (body != null) {
+                        listBannerCarousel = ArrayList()
+                        for (item in body) {
+                            listBannerCarousel.add(SlideModel(item.thumbnail))
+                            item.thumbnail?.let { Log.e("ITEM", it) }
+                        }
+                        binding.carouselDiscover.setImageList(
+                            listBannerCarousel,
+                            ScaleTypes.CENTER_CROP
+                        )
+                    }
+                }
+
+                override
+                fun onFailure(call: Call<ArrayList<BannerModel>?>, t: Throwable) {
+                    Log.e("activity", Log.getStackTraceString(t.cause))
+                }
+            })
+    }
+
+    private fun getTop10Novels() {
+        listNovelTop10 = ArrayList()
+        retrofit.getListBanners()
+            .enqueue(object : Callback<ArrayList<BannerModel>?> {
+                override
+                fun onResponse(
+                    call: Call<ArrayList<BannerModel>?>,
+                    response: Response<ArrayList<BannerModel>?>
+                ) {
+                    val body = response.body()
+                    if (body != null) {
+                        for (item in body) {
+                            listBannerCarousel.add(SlideModel(item.thumbnail))
+                            item.thumbnail?.let { Log.e("ITEM", it) }
+                        }
+                        binding.carouselDiscover.setImageList(
+                            listBannerCarousel,
+                            ScaleTypes.CENTER_CROP
+                        )
+                    }
+                }
+
+                override
+                fun onFailure(call: Call<ArrayList<BannerModel>?>, t: Throwable) {
+                    Log.e("activity", Log.getStackTraceString(t.cause))
+                }
+            })
+        adapterNovelTop10 =
+            AdapterLandscapeNovel(R.layout.item_novel_vertical, listNovelTop10, this)
+        binding.rcvTop10.adapter = adapterNovelTop10
+    }
+
+    private fun getListPopular() {
         listNovelPopular = ArrayList()
         for (i in 1..10)
             listNovelPopular.add(
@@ -94,29 +166,9 @@ class HomeFragment : Fragment(), OnItemClickListener {
         adapterNovelPopular =
             AdapterPortaitNovel(R.layout.item_novel_portait, listNovelPopular, this)
         binding.rcvPopular.adapter = adapterNovelPopular
+    }
 
-        // setup for Recommended
-        listNovelRecommended = ArrayList()
-        for (i in 1..10)
-            listNovelRecommended.add(
-                NovelModel(
-                    id = i,
-                    thumbnail = "https://307a0e78.vws.vegacdn.vn/view/v2/image/img.book/0/0/0/19167.jpg?v=1&w=340&h=497",
-                    name = "Nơi giấc mơ em thuộc về",
-                    author = "Nhóm 4.0",
-                    description = "description",
-                    chapters = 16,
-                    isDone = false,
-                    uploadedAt = Date(),
-                    updatedAt = Date(),
-                    isDeleted = false
-                )
-            )
-        adapterNovelRecommended =
-            AdapterPortaitNovel(R.layout.item_novel_portait, listNovelRecommended, this)
-        binding.rcvRecommended.adapter = adapterNovelRecommended
-
-        // setup for Recent
+    private fun getListRecent() {
         listNovelRecent = ArrayList()
         for (i in 1..10)
             listNovelRecent.add(
@@ -136,17 +188,18 @@ class HomeFragment : Fragment(), OnItemClickListener {
         adapterNovelRecent =
             AdapterLandscapeNovel(R.layout.item_novel_landscape, listNovelRecent, this)
         binding.rcvRecent.adapter = adapterNovelRecent
+    }
 
-        // setup for Top 10
-        listNovelTop10 = ArrayList()
-        for (i in 1..5)
-            listNovelTop10.add(
+    private fun getListRecommended() {
+        listNovelRecommended = ArrayList()
+        for (i in 1..10)
+            listNovelRecommended.add(
                 NovelModel(
                     id = i,
-                    thumbnail = "https://www.nxbtre.com.vn/Images/Book/nxbtre_full_04152018_031555.jpg",
-                    name = "Tôi thấy hoa vàng trên cỏ xanh",
-                    author = "Nguyễn Nhật Ánh",
-                    description = "“Tôi thấy hoa vàng trên cỏ xanh” đúng là một vé để bạn đọc được trở về tuổi thơ. Cùng lũ trẻ trong xóm, ngày ngày rủ nhau chơi các trò chơi mà chỉ có trẻ con thôn quê mới có được. Những câu chuyện nhỏ gần gũi, những tình cảm ấm áp mà những đứa trẻ dành cho nhau khi mới chỉ chớm biết cái thứ tình cảm khác với tình bạn bè.",
+                    thumbnail = "https://307a0e78.vws.vegacdn.vn/view/v2/image/img.book/0/0/0/19167.jpg?v=1&w=340&h=497",
+                    name = "Nơi giấc mơ em thuộc về",
+                    author = "Nhóm 4.0",
+                    description = "description",
                     chapters = 16,
                     isDone = false,
                     uploadedAt = Date(),
@@ -154,9 +207,9 @@ class HomeFragment : Fragment(), OnItemClickListener {
                     isDeleted = false
                 )
             )
-        adapterNovelTop10 =
-            AdapterLandscapeNovel(R.layout.item_novel_vertical, listNovelTop10, this)
-        binding.rcvTop10.adapter = adapterNovelTop10
+        adapterNovelRecommended =
+            AdapterPortaitNovel(R.layout.item_novel_portait, listNovelRecommended, this)
+        binding.rcvRecommended.adapter = adapterNovelRecommended
     }
 
     override fun onItemClick(position: Int, item: Any) {

@@ -1,5 +1,6 @@
 package com.huukhuongit.novelreader.models
 
+import com.google.gson.annotations.SerializedName
 import java.util.Date
 
 class NovelModel {
@@ -14,6 +15,7 @@ class NovelModel {
     var uploadedAt: Date? = null
     var updatedAt: Date? = null
     var isDeleted: Boolean? = null
+    var listChapters: ArrayList<ChapterModel>? = null
 
     constructor()
     constructor(
@@ -26,7 +28,7 @@ class NovelModel {
         isDone: Boolean,
         uploadedAt: Date,
         updatedAt: Date,
-        isDeleted: Boolean
+        isDeleted: Boolean,
     ) {
         this.id = id
         this.thumbnail = thumbnail

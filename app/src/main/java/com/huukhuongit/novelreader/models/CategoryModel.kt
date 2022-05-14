@@ -6,6 +6,7 @@ class CategoryModel {
     var name: String? = null
     var description: String? = null
     var isDeleted: Boolean? = null
+    var listNovels: ArrayList<NovelModel>? = null
 
     constructor()
     constructor(
