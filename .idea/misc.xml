@@ -21,6 +21,8 @@
         <entry key="app/src/main/res/layout/item_novel_portait.xml" value="0.35625" />
         <entry key="app/src/main/res/layout/item_novel_portait_offline.xml" value="0.35625" />
         <entry key="app/src/main/res/layout/item_novel_vertical.xml" value="0.35625" />
+        <entry key="app/src/main/res/layout/item_novel_vertical_list.xml" value="0.35625" />
+        <entry key="app/src/main/res/layout/loading_layout.xml" value="0.35625" />
         <entry key="app/src/main/res/menu/mnu_bottom_nav.xml" value="0.35625" />
       </map>
     </option>

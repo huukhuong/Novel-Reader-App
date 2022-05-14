@@ -5,47 +5,59 @@ import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentTransaction
+import androidx.viewpager.widget.ViewPager
 import com.huukhuongit.novelreader.R
+import com.huukhuongit.novelreader.adapters.AdapterViewPagerBottomNavigation
 import com.huukhuongit.novelreader.databinding.ActivityMainBinding
 import com.huukhuongit.novelreader.fragments.*
+
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-    private var currenFragmentId: Int? = null
+
+    private lateinit var fragmentsList: ArrayList<Fragment>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        replaceFragment(HomeFragment(), R.id.item_bottom_home)
+        addControls()
         addEvents()
+    }
+
+    private fun addControls() {
+        fragmentsList = ArrayList()
+        fragmentsList.add(HomeFragment())
+        fragmentsList.add(CategoriesFragment())
+        fragmentsList.add(OfflineFragment())
+        fragmentsList.add(NotificationsFragment())
+        fragmentsList.add(SettingsFragment())
+        binding.frameLayout.adapter = AdapterViewPagerBottomNavigation(supportFragmentManager)
     }
 
     private fun addEvents() {
         binding.bottomNavigationView.setOnItemSelectedListener {
             when (it.itemId) {
                 R.id.item_bottom_home -> {
-                    replaceFragment(HomeFragment(), R.id.item_bottom_home)
+                    replaceFragment(R.id.item_bottom_home)
                     setSearchBarShow(true)
                 }
                 R.id.item_bottom_categories -> {
-                    replaceFragment(CategoriesFragment(), R.id.item_bottom_categories)
+                    replaceFragment(R.id.item_bottom_categories)
                     setSearchBarShow(true)
                 }
                 R.id.item_bottom_offline -> {
-                    replaceFragment(OfflineFragment(), R.id.item_bottom_offline)
+                    replaceFragment(R.id.item_bottom_offline)
                     setSearchBarShow(false)
                 }
                 R.id.item_bottom_notifications -> {
-                    replaceFragment(NotificationsFragment(), R.id.item_bottom_notifications)
+                    replaceFragment(R.id.item_bottom_notifications)
                     setSearchBarShow(false)
                 }
                 R.id.item_bottom_settings -> {
-                    replaceFragment(SettingsFragment(), R.id.item_bottom_settings)
+                    replaceFragment(R.id.item_bottom_settings)
                     setSearchBarShow(false)
                 }
                 else -> {
@@ -54,22 +66,40 @@ class MainActivity : AppCompatActivity() {
             }
             return@setOnItemSelectedListener true
         }
+
+        binding.frameLayout.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
+
+            override fun onPageScrollStateChanged(state: Int) {
+            }
+
+            override fun onPageScrolled(
+                position: Int,
+                positionOffset: Float,
+                positionOffsetPixels: Int
+            ) {
+
+            }
+
+            override fun onPageSelected(position: Int) {
+                binding.bottomNavigationView.selectedItemId = when (position) {
+                    0 -> R.id.item_bottom_home
+                    1 -> R.id.item_bottom_categories
+                    2 -> R.id.item_bottom_offline
+                    3 -> R.id.item_bottom_notifications
+                    else -> R.id.item_bottom_settings
+                }
+            }
+
+        })
     }
 
-    private fun replaceFragment(fragment: Fragment, id: Int) {
-        if (currenFragmentId != id) {
-            val fragmentManager: FragmentManager = supportFragmentManager
-            val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
-            fragmentTransaction.setCustomAnimations(
-                R.anim.fragment_slide_in,
-                R.anim.fragment_fade_out,
-                R.anim.fragment_fade_in,
-                R.anim.fragment_slide_out
-            )
-            fragmentTransaction.addToBackStack(null)
-            fragmentTransaction.replace(R.id.frameLayout, fragment)
-            fragmentTransaction.commit()
-            currenFragmentId = id
+    private fun replaceFragment(itemId: Int) {
+        binding.frameLayout.currentItem = when (itemId) {
+            R.id.item_bottom_home -> 0
+            R.id.item_bottom_categories -> 1
+            R.id.item_bottom_offline -> 2
+            R.id.item_bottom_notifications -> 3
+            else -> 4
         }
     }
 

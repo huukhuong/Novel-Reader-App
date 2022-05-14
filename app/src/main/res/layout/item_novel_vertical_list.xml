@@ -40,7 +40,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_10sdp"
             android:ellipsize="end"
-            android:maxLines="1"
+            android:maxLines="2"
             android:paddingHorizontal="@dimen/_4sdp"
             android:text="Tôi thấy hoa vàng trên cỏ xanh"
             android:textColor="@color/white"

@@ -24,6 +24,8 @@ import retrofit2.Response
 
 class CategoriesFragment : Fragment(), OnItemClickListener {
 
+    private val listener = this
+
     private var _binding: FragmentCategoriesBinding? = null
     private val binding get() = _binding!!
 
@@ -37,7 +39,9 @@ class CategoriesFragment : Fragment(), OnItemClickListener {
     ): View? {
         _binding = FragmentCategoriesBinding.inflate(inflater, container, false)
         val view = binding.root
+
         addControls()
+
         return view
     }
 
@@ -47,6 +51,8 @@ class CategoriesFragment : Fragment(), OnItemClickListener {
     }
 
     private fun addControls() {
+        binding.rcvCategories.visibility = View.GONE
+        binding.loading.root.visibility = View.VISIBLE
         Helpers.overScroll(binding.rcvCategories, OverScrollDecoratorHelper.ORIENTATION_VERTICAL)
         getAllCategories()
     }
@@ -65,8 +71,11 @@ class CategoriesFragment : Fragment(), OnItemClickListener {
                     Log.e("CODE", "${response.code()}")
                     if (body != null) {
                         listCategories.addAll(body)
-                        adapterCategory.notifyDataSetChanged()
+                        adapterCategory = AdapterCategory(listCategories, listener)
+                        binding.rcvCategories.adapter = adapterCategory
                     }
+                    binding.rcvCategories.visibility = View.VISIBLE
+                    binding.loading.root.visibility = View.GONE
                 }
 
                 override
@@ -74,8 +83,6 @@ class CategoriesFragment : Fragment(), OnItemClickListener {
                     Log.e("activity", Log.getStackTraceString(t.cause))
                 }
             })
-        adapterCategory = AdapterCategory(listCategories, this)
-        binding.rcvCategories.adapter = adapterCategory
     }
 
     override fun onItemClick(position: Int, item: Any) {

@@ -28,9 +28,15 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:paddingHorizontal="@dimen/_10sdp"
+            android:visibility="gone"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:spanCount="2"
             tools:listitem="@layout/item_category" />
+
+        <include
+            android:id="@+id/loading"
+            layout="@layout/loading_layout"
+            android:visibility="visible" />
 
     </LinearLayout>
 

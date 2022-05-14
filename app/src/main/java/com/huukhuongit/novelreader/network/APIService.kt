@@ -22,7 +22,13 @@ interface APIService {
     @GET("getListBanners.php")
     fun getListBanners(): Call<ArrayList<BannerModel>>
 
-    @GET("getTop10Novels.php")
-    fun getTop10Novels(): Call<ArrayList<NovelModel>>
+    @GET("getTop5Novels.php")
+    fun getTop5Novels(): Call<ArrayList<NovelModel>>
+
+    @GET("getTopPopularNovels.php")
+    fun getTopPopularNovels(): Call<ArrayList<NovelModel>>
+
+    @GET("getTopRecommendedNovels.php")
+    fun getTopRecommendedNovels(): Call<ArrayList<NovelModel>>
 
 }

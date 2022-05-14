@@ -1,10 +1,12 @@
 package com.huukhuongit.novelreader.fragments
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.denzcoskun.imageslider.constants.ScaleTypes
@@ -14,6 +16,7 @@ import com.huukhuongit.novelreader.adapters.AdapterLandscapeNovel
 import com.huukhuongit.novelreader.adapters.AdapterPortaitNovel
 import com.huukhuongit.novelreader.adapters.OnItemClickListener
 import com.huukhuongit.novelreader.databinding.FragmentHomeBinding
+import com.huukhuongit.novelreader.databinding.LoadingLayoutBinding
 import com.huukhuongit.novelreader.models.BannerModel
 import com.huukhuongit.novelreader.models.NovelModel
 import com.huukhuongit.novelreader.network.APIService
@@ -28,6 +31,8 @@ import kotlin.collections.ArrayList
 
 
 class HomeFragment : Fragment(), OnItemClickListener {
+
+    private val listener = this
 
     private val retrofit = Constants.retrofit.create(APIService::class.java)
 
@@ -45,8 +50,14 @@ class HomeFragment : Fragment(), OnItemClickListener {
     private lateinit var listNovelRecent: ArrayList<NovelModel>
     private lateinit var adapterNovelRecent: AdapterLandscapeNovel
 
-    private lateinit var listNovelTop10: ArrayList<NovelModel>
-    private lateinit var adapterNovelTop10: AdapterLandscapeNovel
+    private lateinit var listNovelTop: ArrayList<NovelModel>
+    private lateinit var adapterNovelTop: AdapterLandscapeNovel
+
+    private var isLoadBanner = true
+    private var isLoadTop5Novels = true
+    private var isLoadListPopular = true
+    private var isLoadListRecent = true
+    private var isLoadListRecommended = true
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -55,7 +66,9 @@ class HomeFragment : Fragment(), OnItemClickListener {
     ): View? {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val view = binding.root
+
         addControls()
+
         return view
     }
 
@@ -65,6 +78,9 @@ class HomeFragment : Fragment(), OnItemClickListener {
     }
 
     private fun addControls() {
+        binding.loading.root.visibility = View.VISIBLE
+        binding.scrollView.visibility = View.GONE
+
         Helpers.overScroll(
             binding.rcvPopular,
             OverScrollDecoratorHelper.ORIENTATION_HORIZONTAL
@@ -79,13 +95,14 @@ class HomeFragment : Fragment(), OnItemClickListener {
         )
 
         getListBanners()
-        getTop10Novels()
+        getTop5Novels()
         getListPopular()
         getListRecent()
         getListRecommended()
     }
 
     private fun getListBanners() {
+        listBannerCarousel = ArrayList()
         retrofit.getListBanners()
             .enqueue(object : Callback<ArrayList<BannerModel>?> {
                 override
@@ -95,15 +112,15 @@ class HomeFragment : Fragment(), OnItemClickListener {
                 ) {
                     val body = response.body()
                     if (body != null) {
-                        listBannerCarousel = ArrayList()
                         for (item in body) {
                             listBannerCarousel.add(SlideModel(item.thumbnail))
-                            item.thumbnail?.let { Log.e("ITEM", it) }
                         }
                         binding.carouselDiscover.setImageList(
                             listBannerCarousel,
                             ScaleTypes.CENTER_CROP
                         )
+                        isLoadBanner = false
+                        checkLoading()
                     }
                 }
 
@@ -114,106 +131,123 @@ class HomeFragment : Fragment(), OnItemClickListener {
             })
     }
 
-    private fun getTop10Novels() {
-        listNovelTop10 = ArrayList()
-        retrofit.getListBanners()
-            .enqueue(object : Callback<ArrayList<BannerModel>?> {
+    private fun getTop5Novels() {
+        listNovelTop = ArrayList()
+        retrofit.getTop5Novels()
+            .enqueue(object : Callback<ArrayList<NovelModel>?> {
                 override
                 fun onResponse(
-                    call: Call<ArrayList<BannerModel>?>,
-                    response: Response<ArrayList<BannerModel>?>
+                    call: Call<ArrayList<NovelModel>?>,
+                    response: Response<ArrayList<NovelModel>?>
                 ) {
+                    Log.e("REQUEST CODE", "${response.code()}")
                     val body = response.body()
                     if (body != null) {
-                        for (item in body) {
-                            listBannerCarousel.add(SlideModel(item.thumbnail))
-                            item.thumbnail?.let { Log.e("ITEM", it) }
-                        }
-                        binding.carouselDiscover.setImageList(
-                            listBannerCarousel,
-                            ScaleTypes.CENTER_CROP
-                        )
+                        listNovelTop.clear()
+                        listNovelTop.addAll(body)
+                        adapterNovelTop =
+                            AdapterLandscapeNovel(
+                                R.layout.item_novel_vertical_list,
+                                listNovelTop,
+                                listener
+                            )
+                        binding.rcvTop10.adapter = adapterNovelTop
+                        isLoadTop5Novels = false
+                        checkLoading()
                     }
                 }
 
                 override
-                fun onFailure(call: Call<ArrayList<BannerModel>?>, t: Throwable) {
+                fun onFailure(call: Call<ArrayList<NovelModel>?>, t: Throwable) {
                     Log.e("activity", Log.getStackTraceString(t.cause))
                 }
             })
-        adapterNovelTop10 =
-            AdapterLandscapeNovel(R.layout.item_novel_vertical, listNovelTop10, this)
-        binding.rcvTop10.adapter = adapterNovelTop10
     }
 
     private fun getListPopular() {
         listNovelPopular = ArrayList()
-        for (i in 1..10)
-            listNovelPopular.add(
-                NovelModel(
-                    id = i,
-                    thumbnail = "https://307a0e78.vws.vegacdn.vn/view/v2/image/img.book/0/0/0/19167.jpg?v=1&w=340&h=497",
-                    name = "Nơi giấc mơ em thuộc về",
-                    author = "Nhóm 4.0",
-                    description = "description",
-                    chapters = 16,
-                    isDone = false,
-                    uploadedAt = Date(),
-                    updatedAt = Date(),
-                    isDeleted = false
-                )
-            )
-        adapterNovelPopular =
-            AdapterPortaitNovel(R.layout.item_novel_portait, listNovelPopular, this)
-        binding.rcvPopular.adapter = adapterNovelPopular
+        retrofit.getTopPopularNovels()
+            .enqueue(object : Callback<ArrayList<NovelModel>?> {
+                override
+                fun onResponse(
+                    call: Call<ArrayList<NovelModel>?>,
+                    response: Response<ArrayList<NovelModel>?>
+                ) {
+                    Log.e("REQUEST CODE", "${response.code()}")
+                    val body = response.body()
+                    if (body != null) {
+                        listNovelPopular.clear()
+                        listNovelPopular.addAll(body)
+                        adapterNovelPopular =
+                            AdapterPortaitNovel(
+                                R.layout.item_novel_portait,
+                                listNovelPopular,
+                                listener
+                            )
+                        binding.rcvPopular.adapter = adapterNovelPopular
+                        isLoadListPopular = false
+                        checkLoading()
+                    }
+                }
+
+                override
+                fun onFailure(call: Call<ArrayList<NovelModel>?>, t: Throwable) {
+                    Log.e("activity", Log.getStackTraceString(t.cause))
+                }
+            })
     }
 
     private fun getListRecent() {
         listNovelRecent = ArrayList()
-        for (i in 1..10)
-            listNovelRecent.add(
-                NovelModel(
-                    id = i,
-                    thumbnail = "https://www.nxbtre.com.vn/Images/Book/nxbtre_full_04152018_031555.jpg",
-                    name = "Tôi thấy hoa vàng trên cỏ xanh",
-                    author = "Nguyễn Nhật Ánh",
-                    description = "“Tôi thấy hoa vàng trên cỏ xanh” đúng là một vé để bạn đọc được trở về tuổi thơ. Cùng lũ trẻ trong xóm, ngày ngày rủ nhau chơi các trò chơi mà chỉ có trẻ con thôn quê mới có được. Những câu chuyện nhỏ gần gũi, những tình cảm ấm áp mà những đứa trẻ dành cho nhau khi mới chỉ chớm biết cái thứ tình cảm khác với tình bạn bè.",
-                    chapters = 16,
-                    isDone = false,
-                    uploadedAt = Date(),
-                    updatedAt = Date(),
-                    isDeleted = false
-                )
-            )
         adapterNovelRecent =
-            AdapterLandscapeNovel(R.layout.item_novel_landscape, listNovelRecent, this)
+            AdapterLandscapeNovel(R.layout.item_novel_landscape, listNovelRecent, listener)
         binding.rcvRecent.adapter = adapterNovelRecent
+        isLoadListRecent = false
+        checkLoading()
     }
 
     private fun getListRecommended() {
         listNovelRecommended = ArrayList()
-        for (i in 1..10)
-            listNovelRecommended.add(
-                NovelModel(
-                    id = i,
-                    thumbnail = "https://307a0e78.vws.vegacdn.vn/view/v2/image/img.book/0/0/0/19167.jpg?v=1&w=340&h=497",
-                    name = "Nơi giấc mơ em thuộc về",
-                    author = "Nhóm 4.0",
-                    description = "description",
-                    chapters = 16,
-                    isDone = false,
-                    uploadedAt = Date(),
-                    updatedAt = Date(),
-                    isDeleted = false
-                )
-            )
-        adapterNovelRecommended =
-            AdapterPortaitNovel(R.layout.item_novel_portait, listNovelRecommended, this)
-        binding.rcvRecommended.adapter = adapterNovelRecommended
+        retrofit.getTopRecommendedNovels()
+            .enqueue(object : Callback<ArrayList<NovelModel>?> {
+                override
+                fun onResponse(
+                    call: Call<ArrayList<NovelModel>?>,
+                    response: Response<ArrayList<NovelModel>?>
+                ) {
+                    Log.e("REQUEST CODE", "${response.code()}")
+                    val body = response.body()
+                    if (body != null) {
+                        listNovelRecommended.clear()
+                        listNovelRecommended.addAll(body)
+                        adapterNovelRecommended =
+                            AdapterPortaitNovel(
+                                R.layout.item_novel_portait,
+                                listNovelRecommended,
+                                listener
+                            )
+                        binding.rcvRecommended.adapter = adapterNovelRecommended
+                        isLoadListRecommended = false
+                        checkLoading()
+                    }
+                }
+
+                override
+                fun onFailure(call: Call<ArrayList<NovelModel>?>, t: Throwable) {
+                    Log.e("activity", Log.getStackTraceString(t.cause))
+                }
+            })
+    }
+
+    private fun checkLoading() {
+        if (!(isLoadBanner && isLoadTop5Novels && isLoadListPopular && isLoadListRecent && isLoadListPopular)) {
+            binding.loading.root.visibility = View.GONE
+            binding.scrollView.visibility = View.VISIBLE
+        }
     }
 
     override fun onItemClick(position: Int, item: Any) {
         val itemNovel: NovelModel = item as NovelModel
-        Toast.makeText(activity, "Item click ${itemNovel.name}", Toast.LENGTH_SHORT).show()
+
     }
 }

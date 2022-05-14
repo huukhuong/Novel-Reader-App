@@ -9,6 +9,7 @@
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/scrollView"
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -89,7 +90,7 @@
                     android:paddingHorizontal="@dimen/_4sdp"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     tools:itemCount="5"
-                    tools:listitem="@layout/item_novel_vertical" />
+                    tools:listitem="@layout/item_novel_vertical_list" />
 
             </LinearLayout>
             <!-- End Top 10 -->
@@ -244,7 +245,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:src="@drawable/ic_arrow_right"
-                            android:tint="@color/light1" />
+                            app:tint="@color/light1" />
 
                     </LinearLayout>
 
@@ -265,5 +266,10 @@
         </LinearLayout>
 
     </androidx.core.widget.NestedScrollView>
+
+    <include
+        android:id="@+id/loading"
+        layout="@layout/loading_layout"
+        android:visibility="visible" />
 
 </FrameLayout>

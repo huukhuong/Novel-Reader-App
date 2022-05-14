@@ -12,7 +12,8 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardThumb"
-        android:layout_width="@dimen/_110sdp"
+        app:cardElevation="@dimen/_16sdp"
+        android:layout_width="@dimen/_100sdp"
         android:layout_height="match_parent"
         android:layout_marginStart="@dimen/_10sdp"
         android:layout_marginBottom="@dimen/_10sdp"
@@ -41,7 +42,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginStart="@dimen/_125sdp"
+            android:layout_marginStart="@dimen/_115sdp"
             android:orientation="vertical">
 
             <TextView
