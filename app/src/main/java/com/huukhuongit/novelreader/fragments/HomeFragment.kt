@@ -1,13 +1,10 @@
 package com.huukhuongit.novelreader.fragments
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.denzcoskun.imageslider.constants.ScaleTypes
 import com.denzcoskun.imageslider.models.SlideModel
@@ -16,7 +13,6 @@ import com.huukhuongit.novelreader.adapters.AdapterLandscapeNovel
 import com.huukhuongit.novelreader.adapters.AdapterPortaitNovel
 import com.huukhuongit.novelreader.adapters.OnItemClickListener
 import com.huukhuongit.novelreader.databinding.FragmentHomeBinding
-import com.huukhuongit.novelreader.databinding.LoadingLayoutBinding
 import com.huukhuongit.novelreader.models.BannerModel
 import com.huukhuongit.novelreader.models.NovelModel
 import com.huukhuongit.novelreader.network.APIService
@@ -27,7 +23,6 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.util.*
-import kotlin.collections.ArrayList
 
 
 class HomeFragment : Fragment(), OnItemClickListener {
@@ -240,7 +235,7 @@ class HomeFragment : Fragment(), OnItemClickListener {
     }
 
     private fun checkLoading() {
-        if (!(isLoadBanner && isLoadTop5Novels && isLoadListPopular && isLoadListRecent && isLoadListPopular)) {
+        if (!isLoadBanner && !isLoadTop5Novels && !isLoadListPopular && !isLoadListRecent && !isLoadListPopular) {
             binding.loading.root.visibility = View.GONE
             binding.scrollView.visibility = View.VISIBLE
         }
