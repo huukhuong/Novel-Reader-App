@@ -268,7 +268,12 @@
 
     <include
         android:id="@+id/loading"
-        layout="@layout/loading_layout"
+        layout="@layout/layout_loading"
         android:visibility="visible" />
+
+    <include
+        android:id="@+id/noNetwork"
+        layout="@layout/layout_no_network"
+        android:visibility="gone" />
 
 </FrameLayout>

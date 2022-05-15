@@ -8,6 +8,7 @@
     tools:context=".fragments.CategoriesFragment">
 
     <LinearLayout
+        android:id="@+id/containerLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
@@ -32,11 +33,16 @@
             app:spanCount="2"
             tools:listitem="@layout/item_category" />
 
-        <include
-            android:id="@+id/loading"
-            layout="@layout/loading_layout"
-            android:visibility="gone" />
-
     </LinearLayout>
+
+    <include
+        android:id="@+id/noNetwork"
+        layout="@layout/layout_no_network"
+        android:visibility="gone" />
+
+    <include
+        android:id="@+id/loading"
+        layout="@layout/layout_loading"
+        android:visibility="gone" />
 
 </FrameLayout>

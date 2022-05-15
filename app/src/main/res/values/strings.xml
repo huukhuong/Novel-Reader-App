@@ -16,4 +16,5 @@
     <string name="you_can_be_download_to_save_offline_data">You can be download to save offline data</string>
     <string name="no_notification_found">No notification found</string>
     <string name="updating">Updating</string>
+    <string name="no_internet">No Internet</string>
 </resources>

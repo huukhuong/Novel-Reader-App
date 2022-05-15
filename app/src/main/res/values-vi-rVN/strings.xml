@@ -17,4 +17,5 @@
     <string name="you_can_be_download_to_save_offline_data">Bạn có thể tải xuống để lưu dữ liệu ngoại tuyến</string>
     <string name="no_notification_found">Không có thông báo mới</string>
     <string name="updating">Đang cập nhật</string>
+    <string name="no_internet">Không có kết nối internet</string>
 </resources>

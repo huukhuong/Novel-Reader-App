@@ -51,10 +51,19 @@ class CategoriesFragment : Fragment(), OnItemClickListener {
     }
 
     private fun addControls() {
-        binding.rcvCategories.visibility = View.GONE
-        binding.loading.root.visibility = View.VISIBLE
         Helpers.overScroll(binding.rcvCategories, OverScrollDecoratorHelper.ORIENTATION_VERTICAL)
-        getAllCategories()
+
+        if (activity?.let { Helpers.isOnline(it) } == true) {
+            binding.containerLayout.visibility = View.GONE
+            binding.noNetwork.root.visibility = View.GONE
+            binding.loading.root.visibility = View.VISIBLE
+            getAllCategories()
+        } else {
+            binding.containerLayout.visibility = View.GONE
+            binding.loading.root.visibility = View.GONE
+            binding.noNetwork.root.visibility = View.VISIBLE
+        }
+
     }
 
     private fun getAllCategories() {
@@ -74,7 +83,7 @@ class CategoriesFragment : Fragment(), OnItemClickListener {
                         adapterCategory = AdapterCategory(listCategories, listener)
                         binding.rcvCategories.adapter = adapterCategory
                     }
-                    binding.rcvCategories.visibility = View.VISIBLE
+                    binding.containerLayout.visibility = View.VISIBLE
                     binding.loading.root.visibility = View.GONE
                 }
 

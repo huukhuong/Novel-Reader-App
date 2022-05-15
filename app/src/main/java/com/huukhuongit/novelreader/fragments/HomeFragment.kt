@@ -1,10 +1,12 @@
 package com.huukhuongit.novelreader.fragments
 
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import com.denzcoskun.imageslider.constants.ScaleTypes
 import com.denzcoskun.imageslider.models.SlideModel
@@ -73,9 +75,6 @@ class HomeFragment : Fragment(), OnItemClickListener {
     }
 
     private fun addControls() {
-        binding.loading.root.visibility = View.VISIBLE
-        binding.scrollView.visibility = View.GONE
-
         Helpers.overScroll(
             binding.rcvPopular,
             OverScrollDecoratorHelper.ORIENTATION_HORIZONTAL
@@ -88,12 +87,18 @@ class HomeFragment : Fragment(), OnItemClickListener {
             binding.rcvRecommended,
             OverScrollDecoratorHelper.ORIENTATION_HORIZONTAL
         )
-
-        getListBanners()
-        getTop5Novels()
-        getListPopular()
-        getListRecent()
-        getListRecommended()
+        if (activity?.let { Helpers.isOnline(it) } == true) {
+            binding.loading.root.visibility = View.VISIBLE
+            binding.scrollView.visibility = View.GONE
+            getListBanners()
+            getTop5Novels()
+            getListPopular()
+            getListRecent()
+            getListRecommended()
+        } else {
+            binding.loading.root.visibility = View.GONE
+            binding.noNetwork.root.visibility = View.VISIBLE
+        }
     }
 
     private fun getListBanners() {
