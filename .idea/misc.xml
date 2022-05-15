@@ -7,6 +7,7 @@
         <entry key="app/src/main/res/drawable/bottom_nav_icon_color_selector.xml" value="0.2795" />
         <entry key="app/src/main/res/drawable/ic_outline_home_24.xml" value="0.2795" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.2736" />
+        <entry key="app/src/main/res/layout/activity_novel_detail.xml" value="0.35625" />
         <entry key="app/src/main/res/layout/fragment_categories.xml" value="0.35625" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.35625" />
         <entry key="app/src/main/res/layout/fragment_notifications.xml" value="0.35625" />

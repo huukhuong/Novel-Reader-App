@@ -18,4 +18,10 @@
     <string name="no_notification_found">Không có thông báo mới</string>
     <string name="updating">Đang cập nhật</string>
     <string name="no_internet">Không có kết nối internet</string>
+    <string name="views">Lượt đọc</string>
+    <string name="votes">Bình chọn</string>
+    <string name="chapters">Chương</string>
+    <string name="comments">Bình luận</string>
+    <string name="download">Tải xuống</string>
+    <string name="read_book">Đọc ngay</string>
 </resources>
