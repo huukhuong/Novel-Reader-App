@@ -5,9 +5,12 @@ import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Build
 import android.util.Log
-import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
 import me.everything.android.ui.overscroll.OverScrollDecoratorHelper
+import java.text.DecimalFormat
+import kotlin.math.floor
+import kotlin.math.log10
+import kotlin.math.pow
 
 class Helpers {
 
@@ -47,6 +50,20 @@ class Helpers {
                 }
             }
             return false
+        }
+
+        fun formatNumber(number: Number): String? {
+            val suffix = charArrayOf(' ', 'K', 'M', 'B', 'T', 'P', 'E')
+            val numValue = number.toLong()
+            val value = floor(log10(numValue.toDouble())).toInt()
+            val base = value / 3
+            return if (value >= 3 && base < suffix.size) {
+                DecimalFormat("#0.0").format(
+                    numValue / 10.0.pow((base * 3).toDouble())
+                ) + suffix[base]
+            } else {
+                DecimalFormat("#,##0").format(numValue)
+            }
         }
     }
 

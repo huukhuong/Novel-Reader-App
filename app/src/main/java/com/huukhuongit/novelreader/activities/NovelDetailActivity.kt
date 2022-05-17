@@ -12,6 +12,7 @@ import com.huukhuongit.novelreader.databinding.ActivityNovelDetailBinding
 import com.huukhuongit.novelreader.models.NovelModel
 import com.huukhuongit.novelreader.network.APIService
 import com.huukhuongit.novelreader.utils.Constants
+import com.huukhuongit.novelreader.utils.Helpers
 import com.squareup.picasso.Picasso
 import retrofit2.Call
 import retrofit2.Callback
@@ -51,6 +52,7 @@ class NovelDetailActivity : AppCompatActivity(), OnItemClickListener {
                         Picasso.get().load(body.thumbnail).into(binding.imgNovelThumb)
                         binding.txtNovelName.text = body.name
                         binding.txtNovelAuthor.text = body.author
+                        binding.txtNumViews.text = body.reads?.let { Helpers.formatNumber(it) }
                         binding.txtNumChapters.text = "${body.chapters}"
                         binding.txtNovelDescription.text = body.description
                     }

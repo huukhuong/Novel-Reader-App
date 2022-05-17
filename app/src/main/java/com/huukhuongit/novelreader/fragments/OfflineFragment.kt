@@ -56,7 +56,8 @@ class OfflineFragment : Fragment(), OnItemClickListener {
                     isDone = false,
                     uploadedAt = Date(),
                     updatedAt = Date(),
-                    isDeleted = false
+                    isDeleted = false,
+                    Random().nextInt()
                 )
             )
         adapterListOfflineNovel =
