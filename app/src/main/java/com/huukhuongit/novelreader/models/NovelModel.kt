@@ -16,6 +16,7 @@ class NovelModel {
     var updatedAt: Date? = null
     var isDeleted: Boolean? = null
     var listChapters: ArrayList<ChapterModel>? = null
+    var reads: Int? = 0
 
     constructor()
     constructor(
@@ -29,6 +30,7 @@ class NovelModel {
         uploadedAt: Date,
         updatedAt: Date,
         isDeleted: Boolean,
+        reads: Int
     ) {
         this.id = id
         this.thumbnail = thumbnail
@@ -40,5 +42,6 @@ class NovelModel {
         this.uploadedAt = uploadedAt
         this.updatedAt = updatedAt
         this.isDeleted = isDeleted
+        this.reads = reads
     }
 }

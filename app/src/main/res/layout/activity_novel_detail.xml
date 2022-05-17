@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/primary"
-    android:fitsSystemWindows="true"
     tools:context=".activities.NovelDetailActivity">
 
     <ScrollView
@@ -17,19 +16,32 @@
             android:layout_height="wrap_content">
 
             <ImageView
+                android:id="@+id/btnBack"
+                style="@style/SelectableItemBackground"
+                android:layout_width="@dimen/_32sdp"
+                android:layout_height="@dimen/_32sdp"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_24sdp"
+                android:background="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+                android:src="@drawable/ic_round_arrow_back_24"
+                android:translationZ="@dimen/_200sdp" />
+
+            <ImageView
                 android:id="@+id/imgNovelBlur"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_200sdp"
-                android:alpha=".2"
+                android:alpha=".4"
                 android:scaleType="centerCrop"
                 android:src="@drawable/novel_thumb" />
 
             <ImageView
                 android:id="@+id/imgNovelThumb"
                 android:layout_width="@dimen/_120sdp"
-                android:layout_height="@dimen/_200sdp"
+                android:layout_height="@dimen/_160sdp"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_32sdp"
                 android:scaleType="centerCrop"
                 android:src="@drawable/novel_thumb"
                 android:translationZ="@dimen/_100sdp" />
@@ -38,10 +50,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/imgNovelThumb"
-                android:layout_marginTop="-60dp"
+                android:layout_marginTop="-40dp"
                 android:background="@color/primary"
                 android:orientation="vertical"
-                android:paddingTop="60dp">
+                android:paddingTop="40dp">
 
                 <TextView
                     android:id="@+id/txtNovelName"
@@ -149,16 +161,17 @@
                     android:orientation="horizontal">
 
                     <LinearLayout
+                        android:id="@+id/btnReadBook"
                         style="@style/SelectableItemBackground"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:background="?android:attr/selectableItemBackground"
-                        android:paddingBottom="@dimen/_6sdp"
                         android:clickable="true"
                         android:focusable="true"
                         android:gravity="center"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:paddingBottom="@dimen/_6sdp">
 
                         <ImageView
                             android:layout_width="@dimen/_30sdp"
@@ -178,16 +191,17 @@
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/btnDownload"
                         style="@style/SelectableItemBackground"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:background="?android:attr/selectableItemBackground"
-                        android:paddingBottom="@dimen/_6sdp"
                         android:clickable="true"
                         android:focusable="true"
                         android:gravity="center"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:paddingBottom="@dimen/_6sdp">
 
                         <ImageView
                             android:layout_width="@dimen/_30sdp"
@@ -206,16 +220,17 @@
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/btnComment"
                         style="@style/SelectableItemBackground"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:background="?android:attr/selectableItemBackground"
-                        android:paddingBottom="@dimen/_6sdp"
                         android:clickable="true"
                         android:focusable="true"
                         android:gravity="center"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:paddingBottom="@dimen/_6sdp">
 
                         <ImageView
                             android:layout_width="@dimen/_30sdp"
@@ -244,10 +259,10 @@
                 <!-- End Action -->
 
                 <TextView
-                    android:layout_marginTop="@dimen/_12sdp"
                     android:id="@+id/txtNovelDescription"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_12sdp"
                     android:paddingHorizontal="@dimen/_16sdp"
                     android:text="@string/lorem"
                     android:textColor="@color/light1" />

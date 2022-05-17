@@ -7,42 +7,52 @@
     android:background="@color/primary"
     tools:context=".fragments.CategoriesFragment">
 
-    <LinearLayout
-        android:id="@+id/containerLayout"
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/pullToRefresh"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
-        <TextView
+        android:layout_height="match_parent">
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/primary"
-            android:paddingVertical="@dimen/_8sdp"
-            android:paddingStart="@dimen/padding_horizontal"
-            android:text="@string/categories"
-            android:textColor="@color/white"
-            android:textSize="@dimen/_20sdp"
-            android:translationZ="@dimen/_100sdp" />
+            android:orientation="vertical"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:id="@+id/containerLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rcvCategories"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:paddingHorizontal="@dimen/_10sdp"
-            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-            app:spanCount="2"
-            tools:listitem="@layout/item_category" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/primary"
+                    android:paddingVertical="@dimen/_8sdp"
+                    android:paddingStart="@dimen/padding_horizontal"
+                    android:text="@string/categories"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_20sdp"
+                    android:translationZ="@dimen/_100sdp" />
 
-    </LinearLayout>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rcvCategories"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingHorizontal="@dimen/_10sdp"
+                    app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                    app:spanCount="2"
+                    tools:listitem="@layout/item_category" />
 
-    <include
-        android:id="@+id/noNetwork"
-        layout="@layout/layout_no_network"
-        android:visibility="gone" />
+            </LinearLayout>
 
-    <include
-        android:id="@+id/loading"
-        layout="@layout/layout_loading"
-        android:visibility="gone" />
+            <include
+                android:id="@+id/noNetwork"
+                layout="@layout/layout_no_network"
+                android:visibility="gone" />
+
+            <include
+                android:id="@+id/loading"
+                layout="@layout/layout_loading"
+                android:visibility="gone" />
+        </LinearLayout>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 </FrameLayout>

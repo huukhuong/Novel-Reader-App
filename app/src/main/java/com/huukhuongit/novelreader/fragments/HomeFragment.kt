@@ -1,16 +1,16 @@
 package com.huukhuongit.novelreader.fragments
 
-import android.os.Build
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import com.denzcoskun.imageslider.constants.ScaleTypes
 import com.denzcoskun.imageslider.models.SlideModel
 import com.huukhuongit.novelreader.R
+import com.huukhuongit.novelreader.activities.NovelDetailActivity
 import com.huukhuongit.novelreader.adapters.AdapterLandscapeNovel
 import com.huukhuongit.novelreader.adapters.AdapterPortaitNovel
 import com.huukhuongit.novelreader.adapters.OnItemClickListener
@@ -24,7 +24,6 @@ import me.everything.android.ui.overscroll.OverScrollDecoratorHelper
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.util.*
 
 
 class HomeFragment : Fragment(), OnItemClickListener {
@@ -87,6 +86,16 @@ class HomeFragment : Fragment(), OnItemClickListener {
             binding.rcvRecommended,
             OverScrollDecoratorHelper.ORIENTATION_HORIZONTAL
         )
+
+        getAllData()
+
+        // pull to refresh
+        binding.pullToRefresh.setOnRefreshListener {
+            getAllData()
+        }
+    }
+
+    private fun getAllData() {
         if (activity?.let { Helpers.isOnline(it) } == true) {
             binding.loading.root.visibility = View.VISIBLE
             binding.scrollView.visibility = View.GONE
@@ -98,6 +107,7 @@ class HomeFragment : Fragment(), OnItemClickListener {
         } else {
             binding.loading.root.visibility = View.GONE
             binding.noNetwork.root.visibility = View.VISIBLE
+            binding.pullToRefresh.isRefreshing = false
         }
     }
 
@@ -243,11 +253,14 @@ class HomeFragment : Fragment(), OnItemClickListener {
         if (!isLoadBanner && !isLoadTop5Novels && !isLoadListPopular && !isLoadListRecent && !isLoadListPopular) {
             binding.loading.root.visibility = View.GONE
             binding.scrollView.visibility = View.VISIBLE
+            binding.pullToRefresh.isRefreshing = false
         }
     }
 
     override fun onItemClick(position: Int, item: Any) {
         val itemNovel: NovelModel = item as NovelModel
-
+        val intent: Intent = Intent(activity, NovelDetailActivity::class.java)
+        intent.putExtra("novelId", itemNovel.id)
+        activity?.startActivity(intent)
     }
 }
