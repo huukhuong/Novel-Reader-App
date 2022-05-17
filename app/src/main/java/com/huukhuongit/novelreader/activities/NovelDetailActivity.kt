@@ -26,6 +26,7 @@ class NovelDetailActivity : AppCompatActivity(), OnItemClickListener {
 
     private lateinit var listRecommended: ArrayList<NovelModel>
     private lateinit var adapterRecommended: AdapterPortaitNovel
+    private lateinit var novelSelected: NovelModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,6 +49,7 @@ class NovelDetailActivity : AppCompatActivity(), OnItemClickListener {
                 ) {
                     val body = response.body()
                     if (body != null) {
+                        novelSelected = body
                         Picasso.get().load(body.thumbnail).into(binding.imgNovelBlur)
                         Picasso.get().load(body.thumbnail).into(binding.imgNovelThumb)
                         binding.txtNovelName.text = body.name
@@ -93,7 +95,17 @@ class NovelDetailActivity : AppCompatActivity(), OnItemClickListener {
     }
 
     private fun goToReadBookActivity() {
-
+        if(novelSelected.listChapters == null) {
+            Toast.makeText(this, "No chapters", Toast.LENGTH_SHORT).show()
+            return
+        }
+        if (novelSelected.listChapters?.size!! > 0) {
+            val intent = Intent(this, ReadChapterActivity::class.java)
+            intent.putExtra("listChapters", novelSelected.listChapters)
+            startActivity(intent)
+        } else {
+            Toast.makeText(this, "No chapters", Toast.LENGTH_SHORT).show()
+        }
     }
 
     override fun onItemClick(position: Int, item: Any) {

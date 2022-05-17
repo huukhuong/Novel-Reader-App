@@ -18,8 +18,8 @@
             <ImageView
                 android:id="@+id/btnBack"
                 style="@style/SelectableItemBackground"
-                android:layout_width="@dimen/_32sdp"
-                android:layout_height="@dimen/_32sdp"
+                android:layout_width="@dimen/_28sdp"
+                android:layout_height="@dimen/_28sdp"
                 android:layout_marginStart="@dimen/_10sdp"
                 android:layout_marginTop="@dimen/_24sdp"
                 android:background="?android:attr/selectableItemBackground"
@@ -33,8 +33,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_200sdp"
                 android:alpha=".4"
-                android:scaleType="centerCrop"
-                android:src="@drawable/novel_thumb" />
+                android:background="@color/light1"
+                android:scaleType="centerCrop" />
 
             <ImageView
                 android:id="@+id/imgNovelThumb"
@@ -43,7 +43,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="@dimen/_32sdp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/novel_thumb"
+                android:background="@color/light0"
                 android:translationZ="@dimen/_100sdp" />
 
             <LinearLayout
@@ -62,7 +62,7 @@
                     android:gravity="center"
                     android:paddingHorizontal="@dimen/_36sdp"
                     android:paddingVertical="@dimen/_10sdp"
-                    android:text="Tôi thấy hoa vàng trên cỏ xanh"
+                    android:text="..."
                     android:textColor="@color/white"
                     android:textSize="@dimen/_16sdp"
                     android:textStyle="bold" />
@@ -73,7 +73,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:paddingHorizontal="@dimen/_36sdp"
-                    android:text="Nguyễn Nhật Ánh"
+                    android:text="..."
                     android:textColor="@color/light1"
                     android:textSize="@dimen/_12sdp" />
 
@@ -105,7 +105,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="@dimen/_4sdp"
-                            android:text="87,7K"
+                            android:text="..."
                             android:textColor="@color/light1" />
 
                         <TextView
@@ -134,7 +134,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="@dimen/_4sdp"
-                            android:text="10"
+                            android:text="..."
                             android:textColor="@color/light1" />
 
                         <TextView
@@ -179,13 +179,13 @@
                             android:padding="@dimen/_4sdp"
                             android:scaleType="centerCrop"
                             android:src="@drawable/ic_book"
-                            app:tint="@color/light1" />
+                            app:tint="@color/light2" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/read_book"
-                            android:textColor="@color/light1"
+                            android:textColor="@color/light2"
                             android:textSize="@dimen/_12sdp" />
 
                     </LinearLayout>
@@ -208,13 +208,13 @@
                             android:layout_height="@dimen/_30sdp"
                             android:padding="@dimen/_4sdp"
                             android:src="@drawable/ic_download"
-                            app:tint="@color/light1" />
+                            app:tint="@color/light2" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/download"
-                            android:textColor="@color/light1"
+                            android:textColor="@color/light2"
                             android:textSize="@dimen/_12sdp" />
 
                     </LinearLayout>
@@ -238,13 +238,13 @@
                             android:padding="@dimen/_4sdp"
                             android:scaleType="centerCrop"
                             android:src="@drawable/ic_outline_comment_24"
-                            app:tint="@color/light1" />
+                            app:tint="@color/light2" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/comments"
-                            android:textColor="@color/light1"
+                            android:textColor="@color/light2"
                             android:textSize="@dimen/_12sdp" />
 
                     </LinearLayout>
@@ -264,7 +264,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_12sdp"
                     android:paddingHorizontal="@dimen/_16sdp"
-                    android:text="@string/lorem"
+                    android:text="..."
                     android:textColor="@color/light1" />
 
                 <!-- Recommended -->

@@ -1,8 +1,9 @@
 package com.huukhuongit.novelreader.models
 
+import java.io.Serializable
 import java.util.Date
 
-class ChapterModel {
+class ChapterModel : Serializable {
 
     var id: Int? = null
     var title: String? = null
