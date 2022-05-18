@@ -9,6 +9,7 @@ import com.huukhuongit.novelreader.R
 import com.huukhuongit.novelreader.adapters.AdapterPortaitNovel
 import com.huukhuongit.novelreader.adapters.OnItemClickListener
 import com.huukhuongit.novelreader.databinding.ActivityNovelDetailBinding
+import com.huukhuongit.novelreader.models.CategoryModel
 import com.huukhuongit.novelreader.models.NovelModel
 import com.huukhuongit.novelreader.network.APIService
 import com.huukhuongit.novelreader.utils.Constants
@@ -22,11 +23,14 @@ class NovelDetailActivity : AppCompatActivity(), OnItemClickListener {
 
     private lateinit var binding: ActivityNovelDetailBinding
 
+    private val listener = this
+
     private val retrofit = Constants.retrofit.create(APIService::class.java)
 
     private lateinit var listRecommended: ArrayList<NovelModel>
     private lateinit var adapterRecommended: AdapterPortaitNovel
     private lateinit var novelSelected: NovelModel
+    private lateinit var categoryOfNovel: CategoryModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,6 +43,27 @@ class NovelDetailActivity : AppCompatActivity(), OnItemClickListener {
 
     private fun addControls() {
         val novelId = intent.getIntExtra("novelId", 1)
+
+        // get recommended novels
+        retrofit.getNovelsRecommended(novelId)
+            .enqueue(object : Callback<ArrayList<NovelModel>> {
+                override
+                fun onResponse(
+                    call: Call<ArrayList<NovelModel>>,
+                    response: Response<ArrayList<NovelModel>>
+                ) {
+                    val body = response.body()
+                    if (body != null) {
+                        adapterRecommended = AdapterPortaitNovel(R.layout.item_novel_portait, body, listener)
+                        binding.rcvRecommended.adapter = adapterRecommended
+                    }
+                }
+
+                override
+                fun onFailure(call: Call<ArrayList<NovelModel>>, t: Throwable) {
+                    Log.e("activity", Log.getStackTraceString(t.cause))
+                }
+            })
 
         retrofit.getByNovelId(novelId)
             .enqueue(object : Callback<NovelModel> {

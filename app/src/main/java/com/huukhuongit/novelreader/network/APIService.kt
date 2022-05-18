@@ -12,8 +12,11 @@ interface APIService {
     @GET("getAllCategories.php")
     fun getAllCategory() : Call<ArrayList<CategoryModel>>
 
-    @GET("getByCategoryId.php")
+    @GET("getCategoryById.php")
     fun getByCategoryId(@Query("id") id: Int?): Call<CategoryModel>
+
+    @GET("getNovelsRecommended.php")
+    fun getNovelsRecommended(@Query("id") id: Int?): Call<ArrayList<NovelModel>>
 
     @GET("getByNovelId.php")
     fun getByNovelId(@Query("id") id: Int?): Call<NovelModel>
