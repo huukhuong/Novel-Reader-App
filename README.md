@@ -3,6 +3,12 @@ Android Kotlin Novel Reader App
 
 ## ChienBinhAndroid2022
 
+### Youtube demo
+Updating...
+
+### APK file
+Updating...
+
 ### API link:
 +) Get all Categories: https://huukhuongit.com/NovelAPI/getAllCategories.php <br />
 +) Get novel by id: https://huukhuongit.com/NovelAPI/getByNovelId.php <br />
