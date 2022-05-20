@@ -12,6 +12,7 @@ Updating...
 ### Screenshots
 <div style="display: flex">
   <img style="width: 250px" src="./screenshots/sc1.jpg" />
+  <img style="width: 250px" src="./screenshots/sc9.jpg" />
   <img style="width: 250px" src="./screenshots/sc2.jpg" />
   <img style="width: 250px" src="./screenshots/sc3.jpg" />
   <img style="width: 250px" src="./screenshots/sc4.jpg" />
@@ -19,7 +20,6 @@ Updating...
   <img style="width: 250px" src="./screenshots/sc6.jpg" />
   <img style="width: 250px" src="./screenshots/sc7.jpg" />
   <img style="width: 250px" src="./screenshots/sc8.jpg" />
-  <img style="width: 250px" src="./screenshots/sc9.jpg" />
 </div>
 
 ### API link:
