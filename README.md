@@ -11,10 +11,10 @@ Updating...
 
 ### Screenshots
 <div style="display: flex">
-  <img style="max-width: 250px" src="./screenshots/sc1.jpg" />
-  <img style="max-width: 250px" src="./screenshots/sc2.jpg" />
-  <img style="max-width: 250px" src="./screenshots/sc3.jpg" />
-  <img style="max-width: 250px" src="./screenshots/sc4.jpg" />
+  <img style="width: 250px" src="./screenshots/sc1.jpg" />
+  <img style="width: 250px" src="./screenshots/sc2.jpg" />
+  <img style="width: 250px" src="./screenshots/sc3.jpg" />
+  <img style="width: 250px" src="./screenshots/sc4.jpg" />
 </div>
 
 ### API link:
