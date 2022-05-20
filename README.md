@@ -4,7 +4,7 @@ Android Kotlin Novel Reader App
 ## ChienBinhAndroid2022
 
 ### Youtube demo
-Updating...
+https://youtu.be/u4XEe7WDdpw
 
 ### APK file
 Updating...
