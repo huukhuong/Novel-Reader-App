@@ -11,15 +11,15 @@ Updating...
 
 ### Screenshots
 <div style="display: flex">
-  <img style="width: 150px" src="./screenshots/sc1.jpg" />
-  <img style="width: 150px" src="./screenshots/sc9.jpg" />
-  <img style="width: 150px" src="./screenshots/sc2.jpg" />
-  <img style="width: 150px" src="./screenshots/sc3.jpg" />
-  <img style="width: 150px" src="./screenshots/sc4.jpg" />
-  <img style="width: 150px" src="./screenshots/sc5.jpg" />
-  <img style="width: 150px" src="./screenshots/sc6.jpg" />
-  <img style="width: 150px" src="./screenshots/sc7.jpg" />
-  <img style="width: 150px" src="./screenshots/sc8.jpg" />
+  <img style="width: 200px" src="./screenshots/sc1.jpg" />
+  <img style="width: 200px" src="./screenshots/sc9.jpg" />
+  <img style="width: 200px" src="./screenshots/sc2.jpg" />
+  <img style="width: 200px" src="./screenshots/sc3.jpg" />
+  <img style="width: 200px" src="./screenshots/sc4.jpg" />
+  <img style="width: 200px" src="./screenshots/sc5.jpg" />
+  <img style="width: 200px" src="./screenshots/sc6.jpg" />
+  <img style="width: 200px" src="./screenshots/sc7.jpg" />
+  <img style="width: 200px" src="./screenshots/sc8.jpg" />
 </div>
 
 ### API link:
