@@ -172,20 +172,20 @@ class NovelReaderSQLiteHelpers(context: Context) :
         val db = this.writableDatabase
         val sql = "SELECT * FROM $TABLE_CHAPTERS WHERE $CHAPTER_NOVEL_ID=$novelId"
 
-        val cursor: Cursor = db.rawQuery(sql, null)
-        while (!cursor.isAfterLast) {
-            val chapter = ChapterModel()
-            chapter.id = cursor.getInt(0)
-            chapter.title = cursor.getString(1)
-            chapter.content = cursor.getString(2)
-            chapter.novelId = cursor.getInt(3)
-            chapter.isDeleted = cursor.getInt(4) == 1
-            Log.e("CURSOR", cursor.getString(1))st = sqlHelpers.getListNovels()
-        for (item in list) {
-            Log.e("ITEM", item.name!!)
-        }
-            list.add(chapter)
-        }
+//        val cursor: Cursor = db.rawQuery(sql, null)
+//        while (!cursor.isAfterLast) {
+//            val chapter = ChapterModel()
+//            chapter.id = cursor.getInt(0)
+//            chapter.title = cursor.getString(1)
+//            chapter.content = cursor.getString(2)
+//            chapter.novelId = cursor.getInt(3)
+//            chapter.isDeleted = cursor.getInt(4) == 1
+//            Log.e("CURSOR", cursor.getString(1))st = sqlHelpers.getListNovels()
+//        for (item in list) {
+//            Log.e("ITEM", item.name!!)
+//        }
+//            list.add(chapter)
+//        }
 
         return list
     }
