@@ -14,6 +14,7 @@ import com.huukhuongit.novelreader.models.NovelModel
 import com.huukhuongit.novelreader.network.APIService
 import com.huukhuongit.novelreader.utils.Constants
 import com.huukhuongit.novelreader.utils.Helpers
+import com.huukhuongit.novelreader.utils.NovelReaderSQLiteHelpers
 import com.squareup.picasso.Picasso
 import retrofit2.Call
 import retrofit2.Callback
@@ -54,7 +55,8 @@ class NovelDetailActivity : AppCompatActivity(), OnItemClickListener {
                 ) {
                     val body = response.body()
                     if (body != null) {
-                        adapterRecommended = AdapterPortaitNovel(R.layout.item_novel_portait, body, listener)
+                        adapterRecommended =
+                            AdapterPortaitNovel(R.layout.item_novel_portait, body, listener)
                         binding.rcvRecommended.adapter = adapterRecommended
                     }
                 }
@@ -116,11 +118,28 @@ class NovelDetailActivity : AppCompatActivity(), OnItemClickListener {
     }
 
     private fun processDownloadBook() {
+        Log.e("ITEM", "==========================================")
+
+
+        val sqlHelpers = NovelReaderSQLiteHelpers(this)
+//        sqlHelpers.add(novelSelected)
+
+//        val list = sqlHelpers.getListNovels()
+//        for (item in list) {
+//            Log.e("ITEM", item.name!!)
+//        }
+
+        val chaps = sqlHelpers.getListChaptersByNovelId(novelSelected.id!!)
+        for (item in chaps) {
+            Log.e("CHAP", item.title!!)
+        }
+
+        Log.e("ITEM", "==========================================")
 
     }
 
     private fun goToReadBookActivity() {
-        if(novelSelected.listChapters == null) {
+        if (novelSelected.listChapters == null) {
             Toast.makeText(this, "No chapters", Toast.LENGTH_SHORT).show()
             return
         }
